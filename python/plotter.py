@@ -185,6 +185,18 @@ if __name__ == "__main__":
 		default=["LeptonPt", "LeptonEta"],
 		help="Quantities. [Default: %(default)s]"
 	)
+	parser.add_argument("-dpi", "--dots-per-inch",
+		default = 120,
+		help = "Set the dpi of the plot: %(default)s"
+	)
+	parser.add_argument("--width",
+		default = 600,
+		help = "Set the width of the plot: %(default)s"
+	)
+	parser.add_argument("--height",
+		default = 400,
+		help = "Set the height of the plot: %(default)s"
+	)
 
 	args = parser.parse_args()
 
@@ -242,7 +254,12 @@ if __name__ == "__main__":
 					else:
 						print("Check your plotConfig.json! The cut condition is improperly defined!")
 						exit(-1)
-				hist.fill(ak.flatten(currentQuantity))
+				if isinstance(currentQuantity[0], ak.highlevel.Array):
+					hist.fill(ak.flatten(currentQuantity))
+					hist = hist / hist.sum() * xSection * luminosity
+				else:
+					hist.fill(currentQuantity)
+					hist = hist / hist.sum() * xSection * luminosity
 			currentTree.close()
 		histPerSample.append(histPerQuantity)
 
@@ -250,8 +267,7 @@ if __name__ == "__main__":
 	for figureNumber, quantity in enumerate(args.quantities):
 		plt.figure(figureNumber)
 		for sampleNumber, sample in enumerate(args.samples):
-			print(sample)
-			hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = sampleConfigs[sample]["isData"])
+			hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = True if sampleConfigs[sample]["isData"] == "False" else False)
 		hep.cms.label()
 		plt.style.use(hep.style.CMS)
 		plt.legend(fontsize = 12, ncol = 3)

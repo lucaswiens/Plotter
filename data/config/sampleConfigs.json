@@ -1,6 +1,6 @@
 {
 	"zll" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "DY+jets",
 		"color" : "#ca6363",
 		"histtype" : "fill",
@@ -25,7 +25,7 @@
 		]
 	},
 	"ttv" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "ttV(W/Z/H)",
 		"color" : "#ff9700",
 		"histtype" : "fill",
@@ -42,7 +42,7 @@
 		]
 	},
 	"vv" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "VV(W/Z/H)",
 		"color" : "#630000",
 		"histtype" : "fill",
@@ -69,7 +69,7 @@
 		]
 	},
 	"qcd" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "QCD",
 		"color" : "#63caca",
 		"histtype" : "fill",
@@ -92,7 +92,7 @@
 		]
 	},
 	"ttbarll" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "$tt\\rightarrow ll+$jets",
 		"color" : "#ff0000",
 		"histtype" : "fill",
@@ -109,7 +109,7 @@
 		]
 	},
 	"singletop" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "single t",
 		"color" : "#6330ca",
 		"histtype" : "fill",
@@ -129,7 +129,7 @@
 		]
 	},
 	"wjets" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "W+jets",
 		"color" : "#309730",
 		"histtype" : "fill",
@@ -168,7 +168,7 @@
 		]
 	},
 	"ttbarl" : {
-		"isData" : false,
+		"isData" : "False",
 		"label" : "$tt\\rightarrow l$+jets",
 		"color" : "#6363ff",
 		"histtype" : "fill",

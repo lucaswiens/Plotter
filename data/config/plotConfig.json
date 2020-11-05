@@ -33,4 +33,37 @@
 			["nMediumCSVBTagJet", ">=1"]
 		]
 	},
+	"LT" : {
+		"label" : "$LT /$ GeV",
+		"nBins" : 300,
+		"x_min" : 250,
+		"x_max" : 1000,
+		"cutvariables" : [
+			["LeptonPt", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		]
+	},
+	"HT" : {
+		"label" : "$HT /$ GeV",
+		"nBins" : 300,
+		"x_min" : 500,
+		"x_max" : 2000,
+		"cutvariables" : [
+			["LeptonPt", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		]
+	},
+	"test" : "TEST!"
 }
