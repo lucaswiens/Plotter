@@ -1,11 +1,11 @@
 {
-	"LeptonPt" : {
+	"LeptonPt_1" : {
 		"label" : "$p_{T} /$ GeV",
 		"nBins" : 200,
 		"x_min" : 0,
 		"x_max" : 200,
 		"cutvariables" : [
-			["LeptonPt", ">25"],
+			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
 			["nJet", ">3"],
@@ -23,7 +23,7 @@
 		"x_min" : -2.5,
 		"x_max" : 2.5,
 		"cutvariables" : [
-			["LeptonPt", ">25"],
+			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
 			["nJet", ">3"],
@@ -39,7 +39,7 @@
 		"x_min" : 250,
 		"x_max" : 1000,
 		"cutvariables" : [
-			["LeptonPt", ">25"],
+			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
 			["nJet", ">3"],
@@ -55,7 +55,55 @@
 		"x_min" : 500,
 		"x_max" : 2000,
 		"cutvariables" : [
-			["LeptonPt", ">25"],
+			["LeptonPt_1", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		]
+	},
+	"JetPt" : {
+		"label" : "Jet $p_T$ / GeV",
+		"nBins" : 50,
+		"x_min" : 0,
+		"x_max" : 1000,
+		"cutvariables" : [
+			["LeptonPt_1", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		]
+	},
+	"JetPt_1" : {
+		"label" : "Leading Jet $p_T$ / GeV",
+		"nBins" : 50,
+		"x_min" : 0,
+		"x_max" : 1000,
+		"cutvariables" : [
+			["LeptonPt_1", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		]
+	},
+	"JetPt_2" : {
+		"label" : "Leading Jet $p_T$ / GeV",
+		"nBins" : 50,
+		"x_min" : 0,
+		"x_max" : 1000,
+		"cutvariables" : [
+			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
 			["nJet", ">3"],
