@@ -1,9 +1,36 @@
 {
 	"LeptonPt" : {
 		"label" : "$p_{T} /$ GeV",
-		"nBins" : 100,
+		"nBins" : 200,
 		"x_min" : 0,
-		"x_max" : 1000
+		"x_max" : 200,
+		"cutvariables" : [
+			["LeptonPt", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		],
+		"weights" : [
+		]
 	},
-	"test" : "TEST!"
+	"LeptonEta" : {
+		"label" : "$\\eta$",
+		"nBins" : 100,
+		"x_min" : -2.5,
+		"x_max" : 2.5,
+		"cutvariables" : [
+			["LeptonPt", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		]
+	},
 }

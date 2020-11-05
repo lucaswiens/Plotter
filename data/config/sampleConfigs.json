@@ -2,7 +2,7 @@
 	"zll" : {
 		"isData" : false,
 		"label" : "DY+jets",
-		"color" : "#ffcc00",
+		"color" : "#ca6363",
 		"histtype" : "fill",
 		"samplename" : [
 			"DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM/DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM_1_merged.root",
@@ -27,7 +27,7 @@
 	"ttv" : {
 		"isData" : false,
 		"label" : "ttV(W/Z/H)",
-		"color" : "",
+		"color" : "#ff9700",
 		"histtype" : "fill",
 		"samplename" : [
 			"TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7_ext1-v1_NANOAODSIM/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7_ext1-v1_NANOAODSIM_1_merged.root",
@@ -44,7 +44,7 @@
 	"vv" : {
 		"isData" : false,
 		"label" : "VV(W/Z/H)",
-		"color" : "#ff00ff",
+		"color" : "#630000",
 		"histtype" : "fill",
 		"samplename" : [
 			"WWTo2L2Nu_13TeV-powheg_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM/WWTo2L2Nu_13TeV-powheg_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM_1_merged.root",
@@ -71,7 +71,7 @@
 	"qcd" : {
 		"isData" : false,
 		"label" : "QCD",
-		"color" : "#00ffff",
+		"color" : "#63caca",
 		"histtype" : "fill",
 		"samplename" : [
 			"QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM/QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM_1_merged.root",
@@ -93,7 +93,7 @@
 	},
 	"ttbarll" : {
 		"isData" : false,
-		"label" : "t\\bar{t}\\rightarrow\\ell\\ell + jets",
+		"label" : "$tt\\rightarrow ll+$jets",
 		"color" : "#ff0000",
 		"histtype" : "fill",
 		"samplename" : [
@@ -110,8 +110,8 @@
 	},
 	"singletop" : {
 		"isData" : false,
-		"label" : "t / \\bar{t}",
-		"color" : "#cc00ff",
+		"label" : "single t",
+		"color" : "#6330ca",
 		"histtype" : "fill",
 		"samplename" : [
 			"ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM/ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM_1_merged.root",
@@ -130,8 +130,8 @@
 	},
 	"wjets" : {
 		"isData" : false,
-		"label" : "W + jets",
-		"color" : "#00ff00",
+		"label" : "W+jets",
+		"color" : "#309730",
 		"histtype" : "fill",
 		"samplename" : [
 			"WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM_1_merged.root",
@@ -169,8 +169,8 @@
 	},
 	"ttbarl" : {
 		"isData" : false,
-		"label" : "t\\bar{t}\\rightarrow\\ell + jets",
-		"color" : "#0000ff",
+		"label" : "$tt\\rightarrow l$+jets",
+		"color" : "#6363ff",
 		"histtype" : "fill",
 		"samplename" : [
 			"TTJets_SingleLeptFromT_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM/TTJets_SingleLeptFromT_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1_NANOAODSIM_1_merged.root",
