@@ -2,11 +2,11 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-import uproot4 as uproot
+import awkward1 as ak
 import boost_histogram as bh
 import mplhep as hep
-import pandas as pd
-import awkward1 as ak
+import uproot4 as uproot
+#import pandas as pd
 
 import argparse
 import json
@@ -178,11 +178,13 @@ if __name__ == "__main__":
 	)
 	parser.add_argument("-s", "--samples",
 		nargs="+",
-		default = ["zll", "ttv", "vv", "qcd", "ttbarll", "singletop", "wjets", "ttbarl"],
+		#default = ["zll", "ttv", "vv", "qcd", "ttbarll", "singletop", "wjets", "ttbarl"],
+		default = ["ttbarl", "wjets", "singletop", "ttbarll", "qcd", "ttv", "vv", "zll"],
 		help="Samples. [Default: %(default)s]"
 	)
 	parser.add_argument("-x", "--quantities", nargs="+",
-		default=["LeptonPt", "LeptonEta"],
+		required=True,
+		#default=["LeptonPt", "LeptonEta"],
 		help="Quantities. [Default: %(default)s]"
 	)
 	parser.add_argument("-dpi", "--dots-per-inch",
@@ -227,11 +229,15 @@ if __name__ == "__main__":
 			if xSection == 0:
 				continue
 			luminosity = GetLuminosity(fileName)
+
+			tmpHists = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
-			for quantity, hist in zip(args.quantities, histPerQuantity):
-				currentQuantity = currentTree[quantity].array(library="ak")
+			for quantity, hist, finalHist in zip(args.quantities, tmpHists, histPerQuantity):
+				currentQuantity = currentTree[re.sub("_[0-9]", "", quantity)].array(library="ak")
+				if re.search("_[1-9]", quantity):
+					indexOfInterest = int(quantity[-1]) - 1
+					currentQuantity = currentQuantity.mask[ak.num(currentQuantity) > indexOfInterest][:,indexOfInterest]
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
-					#currentCut = currentTree[cut].array(library="pd")
 					currentCut = currentTree[re.sub("_[0-9]", "", cut)].array(library="ak")
 					if re.search("_[1-9]", cut):
 						indexOfInterest = int(cut[-1]) - 1
@@ -258,8 +264,9 @@ if __name__ == "__main__":
 					hist.fill(ak.flatten(currentQuantity))
 					hist = hist / hist.sum() * xSection * luminosity
 				else:
-					hist.fill(currentQuantity)
+					hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
 					hist = hist / hist.sum() * xSection * luminosity
+				finalHist += hist
 			currentTree.close()
 		histPerSample.append(histPerQuantity)
 
