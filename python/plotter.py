@@ -101,13 +101,16 @@ if __name__ == "__main__":
 
 	# Fill Histograms
 	histPerSample = []
-	for sample in args.samples:
+	nSamples = len(args.samples)
+	nQuantities = len(args.quantities)
+	for sampleIndex, sample in enumerate(args.samples):
 		histPerQuantity = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 		if args.test_run:
 			fileList = [sampleConfigs[sample]["samplename"][0]]
 		else:
 			fileList = sampleConfigs[sample]["samplename"]
-		for fileName in fileList:
+		nFiles = len(fileList)
+		for fileIndex, fileName in enumerate(fileList):
 			xSection = common.GetXSection(fileName)
 			if xSection == 0:
 				continue
@@ -115,7 +118,11 @@ if __name__ == "__main__":
 
 			histPerFile = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
+			quantityIndex = 0
 			for quantity, hist, finalHist in zip(args.quantities, histPerFile, histPerQuantity):
+				common.progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity)
+				quantityIndex += 1
+
 				currentQuantity = currentTree[re.sub("_[0-9]", "", quantity)].array(library="ak")
 				if re.search("_[1-9]", quantity):
 					indexOfInterest = int(quantity[-1]) - 1

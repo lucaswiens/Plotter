@@ -136,6 +136,18 @@ def GetOSVariable(Var):
 		sys.exit(1)
 	return variable
 
+def progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity):
+	sampleRatio = float(sampleIndex) / nSamples
+	fileRatio = float(fileIndex) / nFiles
+	quantityRatio = float(quantityIndex) / nQuantities
+	barSize = 20
+	print("[" + "S" * int(sampleRatio * barSize) + "s" * int((1-sampleRatio) * barSize) + "] "
+		"[" + "F" * int(fileRatio * barSize) + "f" * int((1-fileRatio) * barSize) + "] "
+		"[" + "Q" * int(quantityRatio * barSize) + "q" * int((1-quantityRatio) * barSize) + "] " + quantity,
+		end="\r"
+	)
+	return 0
+
 def getOutputs(outputdir, **kwargs):
 	fileTypes = kwargs.get("fileTypes", ["png", "jpg", "pdf", "svg", "eps"])
 

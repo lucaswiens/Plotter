@@ -14,7 +14,7 @@ if [[ -z ${PLOTTING_SSHPC} ]]; then
 	export PLOTTING_SSHPC=$PLOTTING_USERPC
 fi
 
-export PLOTTING_URL=http://${PLOTTING_REMOTE_USER}.web.cern.ch/${PLOTTING_REMOTE_USER}/plots_archive
+export PLOTTING_URL=https://${PLOTTING_REMOTE_USER}.web.cern.ch/${PLOTTING_REMOTE_USER}/plots_archive
 
 if [[ -z ${WEB_PLOTTING_MKDIR_COMMAND} ]]; then
 	export WEB_PLOTTING_MKDIR_COMMAND="xrdfs eosuser.cern.ch mkdir -p /eos/user/${PLOTTING_REMOTE_USER:0:1}/${PLOTTING_REMOTE_USER}/www/plots_archive/{subdir}"
