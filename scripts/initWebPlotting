@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [[ -z ${PLOTTING_USERPC} ]]; then
+	export PLOTTING_USERPC=$HOSTNAME
+fi
+
+# set some variables needed for --userpc and web plotting
+# set PLOTTING_REMOTE_USER manually if you have a different user name on the web plot server
+if [ -z $PLOTTING_REMOTE_USER ]; then
+	export PLOTTING_REMOTE_USER=$CERNUSER
+fi
+
+if [[ -z ${PLOTTING_SSHPC} ]]; then
+	export PLOTTING_SSHPC=$PLOTTING_USERPC
+fi
+
+export PLOTTING_URL=http://${PLOTTING_REMOTE_USER}.web.cern.ch/${PLOTTING_REMOTE_USER}/plots_archive
+
+if [[ -z ${WEB_PLOTTING_MKDIR_COMMAND} ]]; then
+	export WEB_PLOTTING_MKDIR_COMMAND="xrdfs eosuser.cern.ch mkdir -p /eos/user/${PLOTTING_REMOTE_USER:0:1}/${PLOTTING_REMOTE_USER}/www/plots_archive/{subdir}"
+fi
+
+if [[ -z ${WEB_PLOTTING_COPY_COMMAND} ]]; then
+	export WEB_PLOTTING_COPY_COMMAND="xrdcp -s -f {source} root://eosuser.cern.ch//eos/user/${PLOTTING_REMOTE_USER:0:1}/${PLOTTING_REMOTE_USER}/www/plots_archive/{subdir}"
+fi
+
+
+if [[ -z ${WEB_PLOTTING_LS_COMMAND} ]]; then
+	export WEB_PLOTTING_LS_COMMAND="xrdfs eosuser.cern.ch ls /eos/user/${PLOTTING_REMOTE_USER:0:1}/${PLOTTING_REMOTE_USER}/www/plots_archive/{subdir}"
+fi
+
+web_plotting_no_passwd() {
+	kinit ${PLOTTING_REMOTE_USER}@CERN.CH
+}
+

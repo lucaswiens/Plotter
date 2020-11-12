@@ -1,4 +1,21 @@
 {
+	"LeptonPt" : {
+		"label" : "$p_{T} /$ GeV",
+		"nBins" : 200,
+		"x_min" : 0,
+		"x_max" : 200,
+		"cutvariables" : [
+			["LeptonPt_1", ">25"],
+			["HLTLeptonOr", "True"],
+			["METPt", "<5"],
+			["nJet", ">3"],
+			["JetPt_2", ">80"],
+			["HT", ">500"],
+			["LT", ">250"],
+			["nMediumCSVBTagJet", ">=1"]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
+	},
 	"LeptonPt_1" : {
 		"label" : "$p_{T} /$ GeV",
 		"nBins" : 200,
@@ -14,8 +31,7 @@
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
 		],
-		"weights" : [
-		]
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"LeptonEta" : {
 		"label" : "$\\eta$",
@@ -31,7 +47,8 @@
 			["HT", ">500"],
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
-		]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"LT" : {
 		"label" : "$LT /$ GeV",
@@ -47,7 +64,8 @@
 			["HT", ">500"],
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
-		]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"HT" : {
 		"label" : "$HT /$ GeV",
@@ -63,7 +81,8 @@
 			["HT", ">500"],
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
-		]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"JetPt" : {
 		"label" : "Jet $p_T$ / GeV",
@@ -79,7 +98,8 @@
 			["HT", ">500"],
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
-		]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"JetPt_1" : {
 		"label" : "Leading Jet $p_T$ / GeV",
@@ -95,7 +115,8 @@
 			["HT", ">500"],
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
-		]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"JetPt_2" : {
 		"label" : "Leading Jet $p_T$ / GeV",
@@ -111,7 +132,8 @@
 			["HT", ">500"],
 			["LT", ">250"],
 			["nMediumCSVBTagJet", ">=1"]
-		]
+		],
+		"weight" : "JetMediumCSVBTagSF * LeptonSFId * LeptonSFIsolation * LeptonSFTrigger * LeptonSFGSF * LeptonSFMVA * nISRWeight"
 	},
 	"test" : "TEST!"
 }
