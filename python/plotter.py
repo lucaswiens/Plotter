@@ -53,7 +53,7 @@ if __name__ == "__main__":
 	parser.add_argument("-s", "--samples",
 		nargs = "+",
 		#default = ["zll", "ttv", "vv", "qcd", "ttbarll", "singletop", "wjets", "ttbarl"],
-		default = ["ttbarl", "wjets", "singletop", "ttbarll", "qcd", "ttv", "vv", "zll"],
+		default = ["ttbarl", "wjets", "singletop", "ttbarll", "qcd", "ttv", "vv", "zll", "data"],
 		help = "Samples. [Default: %(default)s]"
 	)
 	parser.add_argument("-x", "--quantities",
@@ -79,6 +79,11 @@ if __name__ == "__main__":
 		default = ["png", "pdf"],
 		help = "Set the filetypes of the output: %(default)s"
 	)
+	parser.add_argument("--unblind",
+		default = False,
+		action = "store_true",
+		help = "Will only plot data if you want to unblind: %(defualt)s"
+	)
 
 	args = parser.parse_args()
 
@@ -103,13 +108,20 @@ if __name__ == "__main__":
 	histPerSample = []
 	nSamples = len(args.samples)
 	nQuantities = len(args.quantities)
+	if not args.unblind and "data" in args.samples:
+		args.samples.remove("data")
 	for sampleIndex, sample in enumerate(args.samples):
+		isData = True if sampleConfigs[sample]["isData"] == "True" else False
+
 		histPerQuantity = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
+
 		if args.test_run:
 			fileList = [sampleConfigs[sample]["samplename"][0]]
 		else:
 			fileList = sampleConfigs[sample]["samplename"]
+
 		nFiles = len(fileList)
+		nEvents = 0
 		for fileIndex, fileName in enumerate(fileList):
 			xSection = common.GetXSection(fileName)
 			if xSection == 0:
@@ -131,6 +143,8 @@ if __name__ == "__main__":
 				weightStrings = plotConfig[quantity]["weight"].replace(" ", "").replace("\t", "").split("*")
 				currentWeight = currentQuantity / currentQuantity
 				for weight in weightStrings:
+					if isData:
+						continue
 					tmpWeight = currentTree[re.sub("_[0-9]", "", weight)].array(library="ak")
 					if re.search("_[1-9]", weight):
 						indexOfInterest = int(quantity[-1]) - 1
@@ -160,34 +174,68 @@ if __name__ == "__main__":
 						print("Check your plotConfig.json! The cut condition is improperly defined!")
 						exit(-1)
 				if isinstance(currentQuantity[0], ak.highlevel.Array):
-					hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-					hist = hist / hist.sum() * xSection * luminosity
+					if isData:
+						hist.fill(ak.flatten(currentQuantity))
+					else:
+						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
+					nEvents += hist.sum()
+					hist = hist * xSection * luminosity
 				else:
-					hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-					hist = hist / hist.sum() * xSection * luminosity
+					if isData:
+						hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
+					else:
+						hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
+					nEvents += hist.sum()
+					hist = hist * xSection * luminosity
 				finalHist += hist
 			currentTree.close()
-		histPerSample.append(histPerQuantity)
+		histPerSample.append([hist / nEvents for hist in histPerQuantity])
 
 	# Create the plots
+	if args.unblind and "data" in args.samples:
+		mcHist   = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
+		dataHist = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
+
 	for figureNumber, quantity in enumerate(args.quantities):
-		plt.figure(figureNumber)
-		for sampleNumber, sample in enumerate(args.samples):
-			hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = True if sampleConfigs[sample]["isData"] == "False" else False)
-		hep.cms.label()
-		plt.style.use(hep.style.CMS)
-		plt.legend(fontsize = 12, ncol = 3)
-		plt.xlabel(plotConfig[quantity]["label"])
+		#plt.figure(figureNumber)
+		if args.unblind and "data" in args.samples:
+			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
+		else:
+			fig = plt.figure()
+
+		plt.xlabel(plotConfig[quantity]["label"], ha = "right")
 		plt.ylabel(args.y_label)
+		plt.style.use(hep.style.CMS)
+		hep.cms.label()
+
+		for sampleNumber, sample in enumerate(args.samples):
+			isData = True if sampleConfigs[sample]["isData"] == "True" else False
+			if args.unblind:
+				if isData:
+					dataHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
+				else:
+					mcHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
+
+				hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData, ax = axs[0])
+			else:
+				hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData)
+
+		if args.unblind and "data" in args.samples:
+			hep.histplot(dataHist[figureNumber] / mcHist[figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData, ax = axs[1])
+
+		plt.legend(fontsize = args.font_size, ncol = args.number_of_cols)
+
 		plt.savefig(args.output_directory + "/" + quantity + ".png")
 		plt.savefig(args.output_directory + "/" + quantity + ".pdf")
+
 		plt.yscale("log")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")
+
 		plt.close()
 
 	common.CreateIndexHtml(templateDir = cmsswBase + "/src/Plotting/Plotter/data/html", outputDir = args.output_directory, fileTypes = args.file_types)
 
 	plottingUrl = common.GetOSVariable("PLOTTING_URL")
-	print(plottingUrl)
+	print(plottingUrl + "/" + args.output_directory)
 
