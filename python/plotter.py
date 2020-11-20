@@ -79,6 +79,14 @@ if __name__ == "__main__":
 		default = ["png", "pdf"],
 		help = "Set the filetypes of the output: %(default)s"
 	)
+	parser.add_argument("--font-size",
+		default = 18,
+		help = "Set the filetypes of the output: %(default)s"
+	)
+	parser.add_argument("--number-of-cols",
+		default = 3,
+		help = "Set the filetypes of the output: %(default)s"
+	)
 	parser.add_argument("--unblind",
 		default = False,
 		action = "store_true",
@@ -200,13 +208,14 @@ if __name__ == "__main__":
 		#plt.figure(figureNumber)
 		if args.unblind and "data" in args.samples:
 			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
+			axs[0].set_ylabel(args.y_label)
 		else:
 			fig = plt.figure()
+			plt.ylabel(args.y_label)
 
-		plt.xlabel(plotConfig[quantity]["label"], ha = "right")
-		plt.ylabel(args.y_label)
 		plt.style.use(hep.style.CMS)
-		hep.cms.label()
+		hep.cms.label(ax = axs[0])
+		plt.xlabel(plotConfig[quantity]["label"], ha = "left")
 
 		for sampleNumber, sample in enumerate(args.samples):
 			isData = True if sampleConfigs[sample]["isData"] == "True" else False
@@ -221,13 +230,21 @@ if __name__ == "__main__":
 				hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData)
 
 		if args.unblind and "data" in args.samples:
-			hep.histplot(dataHist[figureNumber] / mcHist[figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData, ax = axs[1])
+			hep.histplot(dataHist[figureNumber] / mcHist[figureNumber], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData, ax = axs[1])
 
-		plt.legend(fontsize = args.font_size, ncol = args.number_of_cols)
+		if args.unblind and "data" in args.samples:
+			axs[0].legend(fontsize = args.font_size, ncol = args.number_of_cols)
+		else:
+			plt.legend(fontsize = args.font_size, ncol = args.number_of_cols)
 
 		plt.savefig(args.output_directory + "/" + quantity + ".png")
 		plt.savefig(args.output_directory + "/" + quantity + ".pdf")
 
+		if args.unblind and "data" in args.samples:
+			axs[0].set_yscale("log")
+			axs[1].set_yscale("linear")
+		else:
+			plt.yscale("log")
 		plt.yscale("log")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")

@@ -5,6 +5,7 @@
 		"x_min" : 0,
 		"x_max" : 200,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
@@ -39,6 +40,7 @@
 		"x_min" : -2.5,
 		"x_max" : 2.5,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
@@ -56,6 +58,7 @@
 		"x_min" : 250,
 		"x_max" : 1000,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
@@ -73,6 +76,7 @@
 		"x_min" : 500,
 		"x_max" : 2000,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
@@ -90,6 +94,7 @@
 		"x_min" : 0,
 		"x_max" : 1000,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
@@ -107,6 +112,7 @@
 		"x_min" : 0,
 		"x_max" : 1000,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],
@@ -124,6 +130,7 @@
 		"x_min" : 0,
 		"x_max" : 1000,
 		"cutvariables" : [
+			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
 			["HLTLeptonOr", "True"],
 			["METPt", "<5"],

@@ -136,21 +136,19 @@ def GetOSVariable(Var):
 		sys.exit(1)
 	return variable
 
-def progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity):
+def progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity, barSize = 20):
 	sampleRatio = float(sampleIndex) / nSamples
 	fileRatio = float(fileIndex) / nFiles
 	quantityRatio = float(quantityIndex) / nQuantities
-	barSize = 20
+
+	if nFiles < barSize:
+		barSize = nFiles
+
 	print("[" + "S" * sampleIndex   + "s" * (nSamples - sampleIndex) + "] "
-		"[" + "F" * fileIndex     + "f" * (nFiles - fileIndex) + "] "
+		"[" + "F" * int(fileRatio) * barSize + "f" * int((1 - fileRatio) * barSize) + "] "
 		"[" + "Q" * quantityIndex + "q" * (nQuantities - quantityIndex) + "] " + quantity,
 		end="\r"
 	)
-	#print("[" + "S" * int(sampleRatio * barSize) + "s" * int((1-sampleRatio) * barSize) + "] "
-	#	"[" + "F" * int(fileRatio * barSize) + "f" * int((1-fileRatio) * barSize) + "] "
-	#	"[" + "Q" * int(quantityRatio * barSize) + "q" * int((1-quantityRatio) * barSize) + "] " + quantity,
-	#	end="\r"
-	#)
 	return 0
 
 def getOutputs(outputdir, **kwargs):
