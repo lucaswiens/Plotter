@@ -145,7 +145,7 @@ def progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityI
 		barSize = nFiles
 
 	print("[" + "S" * sampleIndex   + "s" * (nSamples - sampleIndex) + "] "
-		"[" + "F" * int(fileRatio) * barSize + "f" * int((1 - fileRatio) * barSize) + "] "
+		"[" + "F" * int(fileRatio * barSize) + "f" * int((1 - fileRatio) * barSize) + "] "
 		"[" + "Q" * quantityIndex + "q" * (nQuantities - quantityIndex) + "] " + quantity,
 		end="\r"
 	)
