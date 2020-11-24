@@ -155,8 +155,11 @@ if __name__ == "__main__":
 						continue
 					tmpWeight = currentTree[re.sub("_[0-9]", "", weight)].array(library="ak")
 					if re.search("_[1-9]", weight):
-						indexOfInterest = int(quantity[-1]) - 1
-						currentWeight *= tmpWeight.mask[ak.num(tmpWeight) > indexOfInterest][:,indexOfInterest]
+						indexOfInterest = int(weight[-1]) - 1
+						currentWeight = currentWeight * tmpWeight.mask[ak.num(tmpWeight) > indexOfInterest][:,indexOfInterest]
+					else:
+						currentWeight = currentWeight * tmpWeight
+
 
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
 					cut = cut.replace(" ", "").replace("\t", "")
@@ -185,19 +188,23 @@ if __name__ == "__main__":
 					if isData:
 						hist.fill(ak.flatten(currentQuantity))
 					else:
+						print(currentWeight)
 						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-					nEvents += hist.sum()
-					hist = hist * xSection * luminosity
+						nEvents += hist.sum()
+						hist = hist * xSection * luminosity
 				else:
 					if isData:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
 					else:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-					nEvents += hist.sum()
-					hist = hist * xSection * luminosity
+						nEvents += hist.sum()
+						hist = hist * xSection * luminosity
 				finalHist += hist
 			currentTree.close()
-		histPerSample.append([hist / nEvents for hist in histPerQuantity])
+		if args.unblind and "data" in args.samples:
+			histPerSample.append([hist / nEvents for hist in histPerQuantity[:-1]] + [histPerQuantity[-1]])
+		else:
+			histPerSample.append([hist / nEvents for hist in histPerQuantity])
 
 	# Create the plots
 	if args.unblind and "data" in args.samples:
@@ -245,7 +252,7 @@ if __name__ == "__main__":
 			axs[1].set_yscale("linear")
 		else:
 			plt.yscale("log")
-		plt.yscale("log")
+		#plt.yscale("log")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")
 
