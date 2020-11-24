@@ -64,8 +64,23 @@ if __name__ == "__main__":
 
 	args = parser.parse_args()
 
-	if not os.path.exists(args.output_directory):
-		os.makedirs(args.output_directory)
+	outputDirectories = [args.output_directory,
+			args.output_directory + "/dttpMatchedMuon",
+			args.output_directory + "/bmtfMatchedDttp",
+			args.output_directory + "/bmtfMatchedMuon",
+			args.output_directory + "/bmtfMb34Matched",
+			args.output_directory + "/unused",
+			args.output_directory + "/used",
+			args.output_directory + "/dttp",
+			args.output_directory + "/bmtf",
+			args.output_directory + "/hcal",
+			args.output_directory + "/muon",
+			args.output_directory + "/rest"]
+	for dir in outputDirectories:
+		if not os.path.exists(dir):
+			os.makedirs(dir)
+
+
 
 	with open(args.plot_config) as config_file:
 		histConfig = json.load(config_file)
@@ -75,21 +90,22 @@ if __name__ == "__main__":
 	# Create the plots
 	for figureNumber, key in enumerate(histograms.keys()):
 		plt.figure(figureNumber)
-		plt.ylabel(hitogramConfig[key]["ylabel"])
+		plt.ylabel(histConfig[key]["ylabel"])
 		plt.style.use(hep.style.CMS)
-		hep.cms.label(ax = axs[0])
-		plt.xlabel(histConfig[key]["label"])
+		hep.cms.label()
+		plt.xlabel(histConfig[key]["xlabel"])
 
-		hep.histplot(histograms[key], label = hitogramConfig[key]["xlabel"], color = histConfig[key]["color"], histtype = histConfig[key]["histtype"])
-		#hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData)
-
+		if re.search("_vs_", key):
+			hep.hist2dplot(histograms[key], color = histConfig[key]["color"])
+		else:
+			hep.histplot(histograms[key], color = histConfig[key]["color"], histtype = histConfig[key]["histtype"])
 		#plt.legend(fontsize = args.font_size, ncol = args.number_of_cols)
 
-		plt.savefig(args.output_directory + "/" + key + ".png")
-		plt.savefig(args.output_directory + "/" + key + ".pdf")
+		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + ".png")
+		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + ".pdf")
 
-		plt.savefig(args.output_directory + "/" + key + "_log.png")
-		plt.savefig(args.output_directory + "/" + key + "_log.pdf")
+		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + "_log.png")
+		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + "_log.pdf")
 
 		plt.close()
 
