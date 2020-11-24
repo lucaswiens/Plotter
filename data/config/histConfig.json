@@ -598,28 +598,28 @@
 		"xlabel" : "$p_T$ / GeV",
 		"ylabel" : "Events",
 		"color" : "black",
-		"subdir" : "BmtfMb34Matched",
+		"subdir" : "bmtfMb34Matched",
 		"histtype" : "fill"
 	},
 	"BmtfMb34HoMatchedMuonCmsEta;1" : {
 		"xlabel" : "$\\eta$",
 		"ylabel" : "Events",
 		"color" : "black",
-		"subdir" : "BmtfMb34Matched",
+		"subdir" : "bmtfMb34Matched",
 		"histtype" : "fill"
 	},
 	"BmtfMb34HoMatchedMuonCmsPhi;1" : {
 		"xlabel" : "$\\varphi$",
 		"ylabel" : "Events",
 		"color" : "black",
-		"subdir" : "BmtfMb34Matched",
+		"subdir" : "bmtfMb34Matched",
 		"histtype" : "fill"
 	},
 	"BmtfMb34HoMatchedMuonCmsDeltaR;1" : {
 		"xlabel" : "$\\Delta R$",
 		"ylabel" : "Events",
 		"color" : "black",
-		"subdir" : "BmtfMb34Matched",
+		"subdir" : "bmtfMb34Matched",
 		"histtype" : "fill"
 	},
 	"BmtfCmsPt_vs_BmtfMatchedMuonDeltaR;1" : {
