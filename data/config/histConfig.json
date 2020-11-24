@@ -1,0 +1,722 @@
+{
+	"HoCmsPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"SampleEnergy" : {
+		"xlabel" : "$E$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"QIESampleFc" : {
+		"xlabel" : "QIESampleFc",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"QIESamplePedestal" : {
+		"xlabel" : "QIESamplePedestal",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"QIESampleFc_MPedestals" : {
+		"xlabel" : "QIESampleFc_MPedestals",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonMet" : {
+		"xlabel" : "$MET\left(\mu\right)$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonMt" : {
+		"xlabel" : "$m_T\left(\mu\right)$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"isLooseMuon" : {
+		"xlabel" : "isLooseMuon",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"isMediumMuon" : {
+		"xlabel" : "isMediumMuon",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"isTightMuon" : {
+		"xlabel" : "isTightMuon",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonHlt_isomu" : {
+		"xlabel" : "muonHlt_isomu",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonHlt_mu" : {
+		"xlabel" : "muonHlt_mu",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonPassesSingleMuon" : {
+		"xlabel" : "muonPassesSingleMuon",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonCharge" : {
+		"xlabel" : "$q$ / fC",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonIEta" : {
+		"xlabel" : "$i\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonE" : {
+		"xlabel" : "$E$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonEt" : {
+		"xlabel" : "$E_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonPt" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonIso" : {
+		"xlabel" : "muonIso",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonHlt_isoDeltaR" : {
+		"xlabel" : "$\Delta R$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonHlt_deltaR" : {
+		"xlabel" : "$\Delta R$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonEtaSt1" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonPhiSt1" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonEtaSt2" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"muonPhiSt2" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpSize" : {
+		"xlabel" : "$n_{DTTP}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpBx" : {
+		"xlabel" : "dttpBx",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpWheel" : {
+		"xlabel" : "Wheel$_{DTTP}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpSection" : {
+		"xlabel" : "Section$_{DTTP}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpStation" : {
+		"xlabel" : "Station$_{DTTP}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpQualitytCode" : {
+		"xlabel" : "Quality Code$_{DTTP}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpTs2Tag" : {
+		"xlabel" : "dttpTs2Tag",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpPhi" : {
+		"xlabel" : "$i\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpPhiB" : {
+		"xlabel" : "$\varphi_B$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"dttpCmsPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThSize" : {
+		"xlabel" : "bmtfThSize",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThBx" : {
+		"xlabel" : "bmtfThBx",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThWh" : {
+		"xlabel" : "bmtfThWh",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThSe" : {
+		"xlabel" : "bmtfThSe",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThSt" : {
+		"xlabel" : "bmtfThSt",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThTheta" : {
+		"xlabel" : "bmtfThTheta",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfThCode" : {
+		"xlabel" : "bmtfThCode",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"nTfMuon" : {
+		"xlabel" : "$n_{BMTF}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwPt" : {
+		"xlabel" : "$p_T$ / 2GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonGlobalPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwSign" : {
+		"xlabel" : "tfMuonHwSign",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwSignValid" : {
+		"xlabel" : "tfMuonHwSignValid",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwQual" : {
+		"xlabel" : "tfMuonHwQual",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonLink" : {
+		"xlabel" : "tfMuonLink",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonProcessor" : {
+		"xlabel" : "tfMuonProcessor",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonTrackFinderType" : {
+		"xlabel" : "tfMuonTrackFinderType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonHwHF" : {
+		"xlabel" : "tfMuonHwHF",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonBx" : {
+		"xlabel" : "tfMuonBx",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonWh" : {
+		"xlabel" : "Wheel$_{BMTF}$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"tfMuonTrAdd" : {
+		"xlabel" : "tfMuonTrAdd",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfCmsPt" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfCmsEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfCmsPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfDttpDeltaPhi_MB1" : {
+		"xlabel" : "$\Delta \varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfDttpDeltaPhi_MB2" : {
+		"xlabel" : "$\Delta \varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfDttpDeltaPhi_MB3" : {
+		"xlabel" : "$\Delta \varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfDttpDeltaPhi_MB4" : {
+		"xlabel" : "$\Delta \varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfTrackType" : {
+		"xlabel" : "bmtfTrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"bmtfMatchedMuonDeltaR" : {
+		"xlabel" : "$Delta R$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonDeltaPt" : {
+		"xlabel" : "$Delta p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonPt" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonEta" : {
+		"xlabel" : "$eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonDeltaEta" : {
+		"xlabel" : "$\Delta \eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonDeltaPhi" : {
+		"xlabel" : "$\Delta \phi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonTrackType" : {
+		"xlabel" : "BmtfMatchedMuonTrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb34HoMatchedMuonCmsPt" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb34HoMatchedMuonCmsEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb34HoMatchedMuonCmsPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb34HoMatchedMuonCmsDeltaR" : {
+		"xlabel" : "$\Delta R$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfCmsPt_vs_BmtfMatchedMuonDeltaR" : {
+		"xlabel" : "$\Delta R$",
+		"ylabel" : "$p_T$ / GeV",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonPt_vs_BmtfMatchedMuonEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "$p_T$ / GeV",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonPt_vs_BmtfMatchedMuonPhi" : {
+		"xlabel" : "$\varphi$",
+		"ylabel" : "$p_T$ / GeV",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonEta_vs_BmtfMatchedMuonPhi" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "$\varphi$",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonpT_vs_TrackType" : {
+		"xlabel" : "BmtfMatchedMuonpT_vs_TrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMB1DeltaPhi_vs_BmtfTrackType" : {
+		"xlabel" : "BmtfMB1DeltaPhi_vs_BmtfTrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMB2DeltaPhi_vs_BmtfTrackType" : {
+		"xlabel" : "BmtfMB2DeltaPhi_vs_BmtfTrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMB3DeltaPhi_vs_BmtfTrackType" : {
+		"xlabel" : "BmtfMB3DeltaPhi_vs_BmtfTrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMB4DeltaPhi_vs_BmtfTrackType" : {
+		"xlabel" : "BmtfMB4DeltaPhi_vs_BmtfTrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"MB_station_vs_wheel" : {
+		"xlabel" : "Wheel",
+		"ylabel" : "Station",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"MB_station_vs_wheel_Hq" : {
+		"xlabel" : "Wheel",
+		"ylabel" : "Station",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"MB_station_vs_wheel_Lq" : {
+		"xlabel" : "Wheel",
+		"ylabel" : "Station",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"usedMB_station_vs_wheel" : {
+		"xlabel" : "usedMB_station_vs_wheel",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"usedMB_station_vs_wheel_Hq" : {
+		"xlabel" : "usedMB_station_vs_wheel_Hq",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"usedMB_station_vs_wheel_Lq" : {
+		"xlabel" : "usedMB_station_vs_wheel_Lq",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"unusedMB_station_vs_wheel" : {
+		"xlabel" : "unusedMB_station_vs_wheel",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"unusedMB_station_vs_wheel_Hq" : {
+		"xlabel" : "unusedMB_station_vs_wheel_Hq",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"unusedMB_station_vs_wheel_Lq" : {
+		"xlabel" : "unusedMB_station_vs_wheel_Lq",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"MuonPt_vs_mb1MatchedMuonDeltaEta" : {
+		"xlabel" : "MuonPt_vs_mb1MatchedMuonDeltaEta",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"MuonPt_vs_mb1MatchedMuonDeltaPhi" : {
+		"xlabel" : "MuonPt_vs_mb1MatchedMuonDeltaPhi",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"MuonPt_vs_mb1MatchedMuonDeltaR" : {
+		"xlabel" : "MuonPt_vs_mb1MatchedMuonDeltaR",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonPt" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonPtDeltaPhiZero" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonEtaDeltaPhiZero" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonPt" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonEta" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonPtDeltaPhiZero" : {
+		"xlabel" : "$p_T$ / GeV",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonEtaDeltaPhiZero" : {
+		"xlabel" : "$\eta$",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3HoMatchedWheel_vs_IEta" : {
+		"xlabel" : "$i\eta$",
+		"ylabel" : "Wheel",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3HoMatchedPt_vs_BmtfMb3MatchedHoDeltaPhiMin" : {
+		"xlabel" : "BmtfMb3HoMatchedPt_vs_BmtfMb3MatchedHoDeltaPhiMin",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonCharge_vs_BmtfMb3MatchedHoIPhi" : {
+		"xlabel" : "BmtfMatchedMuonCharge_vs_BmtfMb3MatchedHoIPhi",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonPt_vs_Eta" : {
+		"xlabel" : "BmtfMb3MatchedMuonPt_vs_Eta",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonPt_vs_TrackType" : {
+		"xlabel" : "BmtfMb3MatchedMuonPt_vs_TrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb3MatchedMuonPt_vs_EtaDeltaPhiZero" : {
+		"xlabel" : "BmtfMb3MatchedMuonPt_vs_EtaDeltaPhiZero",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4HoMatchedWheel_vs_IEta" : {
+		"xlabel" : "BmtfMb4HoMatchedWheel_vs_IEta",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4HoMatchedPt_vs_BmtfMb4MatchedHoDeltaPhiMin" : {
+		"xlabel" : "BmtfMb4HoMatchedPt_vs_BmtfMb4MatchedHoDeltaPhiMin",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMatchedMuonCharge_vs_BmtfMb4MatchedHoIPhi" : {
+		"xlabel" : "BmtfMatchedMuonCharge_vs_BmtfMb4MatchedHoIPhi",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonPt_vs_Eta" : {
+		"xlabel" : "BmtfMb4MatchedMuonPt_vs_Eta",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonPt_vs_TrackType" : {
+		"xlabel" : "BmtfMb4MatchedMuonPt_vs_TrackType",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+	"BmtfMb4MatchedMuonPt_vs_EtaDeltaPhiZero" : {
+		"xlabel" : "BmtfMb4MatchedMuonPt_vs_EtaDeltaPhiZero",
+		"ylabel" : "Events",
+		"color" : "black",
+		"histtype" : "bar"
+	},
+}
