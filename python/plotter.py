@@ -217,7 +217,7 @@ if __name__ == "__main__":
 			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
 			axs[0].set_ylabel(args.y_label)
 		else:
-			fig = plt.figure()
+			fig = plt.figure(figureNumber)
 			plt.ylabel(args.y_label)
 
 		plt.style.use(hep.style.CMS)

@@ -61,6 +61,11 @@ if __name__ == "__main__":
 		default = 1,
 		help = "Set the filetypes of the output: %(default)s"
 	)
+	parser.add_argument("-v", "--verbose",
+		help = "Print more information, useful for debugging",
+		default = False,
+		action = "store_true"
+	)
 
 	args = parser.parse_args()
 
@@ -91,7 +96,11 @@ if __name__ == "__main__":
 	# Create the plots
 	numberOfHists = len(histograms.keys())
 	for figureNumber, key in enumerate(histograms.keys()):
-		print("[" + "H" * figureNumber + "h" * numberOfHists + "]", end="\r")
+		if(args.verbose):
+			print(key)
+		else:
+			print("[" + "H" * figureNumber + "h" * numberOfHists + "]", end="\r")
+
 		plt.figure(figureNumber)
 		plt.ylabel(histConfig[key]["ylabel"])
 		plt.style.use(hep.style.CMS)
@@ -107,6 +116,7 @@ if __name__ == "__main__":
 		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + ".png")
 		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + ".pdf")
 
+		plt.yscale("log")
 		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + "_log.png")
 		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + "_log.pdf")
 
