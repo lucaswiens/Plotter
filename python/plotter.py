@@ -92,6 +92,10 @@ if __name__ == "__main__":
 		action = "store_true",
 		help = "Will only plot data if you want to unblind: %(defualt)s"
 	)
+	parser.add_argument("--systematic-variation",
+		default = "nominal",
+		help = "Choose the systematic variation (nominal): %(default)s"
+	)
 
 	args = parser.parse_args()
 
@@ -124,9 +128,19 @@ if __name__ == "__main__":
 		histPerQuantity = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 
 		if args.test_run:
-			fileList = [sampleConfigs[sample]["samplename"][0]]
+			print("Warning! You are making a test plot, the result will not show an accurate Event number!"
+			print("This would need to use the information of all files. Use this only to test configs or for debugging!"
+			directoryList = [sampleConfigs[sample]["samplename"][0]]
 		else:
-			fileList = sampleConfigs[sample]["samplename"]
+			directoryList = sampleConfigs[sample]["samplename"]
+
+		fileList = []
+		for directory in directoryList:
+			for root, dirs, files in os.walk(args.input_directory + directory):
+				for f in files:
+					fileList.append(directory + "/" + f)
+					if (args.test_run):
+						break
 
 		nFiles = len(fileList)
 		nEvents = 0
@@ -136,6 +150,7 @@ if __name__ == "__main__":
 				continue
 			luminosity = common.GetLuminosity(fileName)
 
+			nEvents += uproot.open(args.input_directory + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0]
 			histPerFile = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
 			quantityIndex = 0
@@ -159,7 +174,6 @@ if __name__ == "__main__":
 						currentWeight = currentWeight * tmpWeight.mask[ak.num(tmpWeight) > indexOfInterest][:,indexOfInterest]
 					else:
 						currentWeight = currentWeight * tmpWeight
-
 
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
 					cut = cut.replace(" ", "").replace("\t", "")
@@ -190,14 +204,12 @@ if __name__ == "__main__":
 					else:
 						print(currentWeight)
 						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-						nEvents += hist.sum()
 						hist = hist * xSection * luminosity
 				else:
 					if isData:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
 					else:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-						nEvents += hist.sum()
 						hist = hist * xSection * luminosity
 				finalHist += hist
 			currentTree.close()
@@ -212,7 +224,6 @@ if __name__ == "__main__":
 		dataHist = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 
 	for figureNumber, quantity in enumerate(args.quantities):
-		#plt.figure(figureNumber)
 		if args.unblind and "data" in args.samples:
 			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
 			axs[0].set_ylabel(args.y_label)
