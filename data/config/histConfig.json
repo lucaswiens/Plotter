@@ -1,912 +1,126 @@
 {
-	"sumQ;1" : {
-		"xlabel" : "sumQ",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalDetIds;1" : {
-		"xlabel" : "$n_{HOTP}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalQIESamples;1" : {
-		"xlabel" : "hcalQIESamples",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalDetIdIEta;1" : {
-		"xlabel" : "$i\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalDetIdIPhi;1" : {
-		"xlabel" : "$i\\phi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalQIESample;1" : {
-		"xlabel" : "hcalQIESample",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalQIESampleAdc;1" : {
-		"xlabel" : "hcalQIESampleAdc",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalQIESampleDv;1" : {
-		"xlabel" : "hcalQIESampleDv",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"hcalQIESampleEr;1" : {
-		"xlabel" : "hcalQIESampleEr",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"HoCmsPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"HoCmsEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"SampleEnergy;1" : {
-		"xlabel" : "$E$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"QIESampleFc;1" : {
-		"xlabel" : "QIESampleFc",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"QIESamplePedestal;1" : {
-		"xlabel" : "QIESamplePedestal",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"QIESampleFc_MPedestals;1" : {
-		"xlabel" : "QIESampleFc_MPedestals",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "hcal",
-		"histtype" : "fill"
-	},
-	"muonMet;1" : {
-		"xlabel" : "$MET\\left(\\mu\\right)$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonMt;1" : {
-		"xlabel" : "$m_T\\left(\\mu\\right)$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"isLooseMuon;1" : {
-		"xlabel" : "isLooseMuon",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"isMediumMuon;1" : {
-		"xlabel" : "isMediumMuon",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"isTightMuon;1" : {
-		"xlabel" : "isTightMuon",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonHlt_isomu;1" : {
-		"xlabel" : "muonHlt_isomu",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonHlt_mu;1" : {
-		"xlabel" : "muonHlt_mu",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonPassesSingleMuon;1" : {
-		"xlabel" : "muonPassesSingleMuon",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonCharge;1" : {
-		"xlabel" : "$q$ / fC",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonIEta;1" : {
-		"xlabel" : "$i\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonE;1" : {
-		"xlabel" : "$E$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonEt;1" : {
-		"xlabel" : "$E_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonPt;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonIso;1" : {
-		"xlabel" : "muonIso",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonHlt_isoDeltaR;1" : {
-		"xlabel" : "$\\Delta R$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonHlt_deltaR;1" : {
-		"xlabel" : "$\\Delta R$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonEtaSt1;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonPhiSt1;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonEtaSt2;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"muonPhiSt2;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "muon",
-		"histtype" : "fill"
-	},
-	"dttpSize;1" : {
-		"xlabel" : "$n_{DTTP}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpBx;1" : {
-		"xlabel" : "dttpBx",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpWheel;1" : {
-		"xlabel" : "Wheel$_{DTTP}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpSection;1" : {
-		"xlabel" : "Section$_{DTTP}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpStation;1" : {
-		"xlabel" : "Station$_{DTTP}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpQualitytCode;1" : {
-		"xlabel" : "Quality Code$_{DTTP}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpTs2Tag;1" : {
-		"xlabel" : "dttpTs2Tag",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpPhi;1" : {
-		"xlabel" : "$i\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpPhiB;1" : {
-		"xlabel" : "$\\varphi_B$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"dttpCmsPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "dttp",
-		"histtype" : "fill"
-	},
-	"bmtfThSize;1" : {
-		"xlabel" : "bmtfThSize",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"bmtfThBx;1" : {
-		"xlabel" : "bmtfThBx",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"bmtfThWh;1" : {
-		"xlabel" : "bmtfThWh",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"bmtfThSe;1" : {
-		"xlabel" : "bmtfThSe",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"bmtfThSt;1" : {
-		"xlabel" : "bmtfThSt",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"bmtfThTheta;1" : {
-		"xlabel" : "bmtfThTheta",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"bmtfThCode;1" : {
-		"xlabel" : "bmtfThCode",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "rest",
-		"histtype" : "fill"
-	},
-	"nTfMuon;1" : {
-		"xlabel" : "$n_{BMTF}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwPt;1" : {
-		"xlabel" : "$p_T$ / 2GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonGlobalPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwSign;1" : {
-		"xlabel" : "tfMuonHwSign",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwSignValid;1" : {
-		"xlabel" : "tfMuonHwSignValid",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwQual;1" : {
-		"xlabel" : "tfMuonHwQual",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonLink;1" : {
-		"xlabel" : "tfMuonLink",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonProcessor;1" : {
-		"xlabel" : "tfMuonProcessor",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonTrackFinderType;1" : {
-		"xlabel" : "tfMuonTrackFinderType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonHwHF;1" : {
-		"xlabel" : "tfMuonHwHF",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonBx;1" : {
-		"xlabel" : "tfMuonBx",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonWh;1" : {
-		"xlabel" : "Wheel$_{BMTF}$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"tfMuonTrAdd;1" : {
-		"xlabel" : "tfMuonTrAdd",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"bmtfCmsPt;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"bmtfCmsEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"bmtfCmsPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"bmtfDttpDeltaPhi_MB1;1" : {
-		"xlabel" : "$\\Delta \\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedDttp",
-		"histtype" : "fill"
-	},
-	"bmtfDttpDeltaPhi_MB2;1" : {
-		"xlabel" : "$\\Delta \\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedDttp",
-		"histtype" : "fill"
-	},
-	"bmtfDttpDeltaPhi_MB3;1" : {
-		"xlabel" : "$\\Delta \\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedDttp",
-		"histtype" : "fill"
-	},
-	"bmtfDttpDeltaPhi_MB4;1" : {
-		"xlabel" : "$\\Delta \\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedDttp",
-		"histtype" : "fill"
-	},
-	"bmtfTrackType;1" : {
-		"xlabel" : "bmtfTrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"bmtfMatchedMuonDeltaR;1" : {
-		"xlabel" : "$Delta R$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonDeltaPt;1" : {
-		"xlabel" : "$Delta p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonPt;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonEta;1" : {
-		"xlabel" : "$eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonDeltaEta;1" : {
-		"xlabel" : "$\\Delta \\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonDeltaPhi;1" : {
-		"xlabel" : "$\\Delta \\phi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonTrackType;1" : {
-		"xlabel" : "BmtfMatchedMuonTrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMb34HoMatchedMuonCmsPt;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb34HoMatchedMuonCmsEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb34HoMatchedMuonCmsPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb34HoMatchedMuonCmsDeltaR;1" : {
-		"xlabel" : "$\\Delta R$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfCmsPt_vs_BmtfMatchedMuonDeltaR;1" : {
-		"xlabel" : "$\\Delta R$",
-		"ylabel" : "$p_T$ / GeV",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonPt_vs_BmtfMatchedMuonEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "$p_T$ / GeV",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonPt_vs_BmtfMatchedMuonPhi;1" : {
-		"xlabel" : "$\\varphi$",
-		"ylabel" : "$p_T$ / GeV",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonEta_vs_BmtfMatchedMuonPhi;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "$\\varphi$",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonpT_vs_TrackType;1" : {
-		"xlabel" : "BmtfMatchedMuonpT_vs_TrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"BmtfMB1DeltaPhi_vs_BmtfTrackType;1" : {
-		"xlabel" : "BmtfMB1DeltaPhi_vs_BmtfTrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"BmtfMB2DeltaPhi_vs_BmtfTrackType;1" : {
-		"xlabel" : "BmtfMB2DeltaPhi_vs_BmtfTrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"BmtfMB3DeltaPhi_vs_BmtfTrackType;1" : {
-		"xlabel" : "BmtfMB3DeltaPhi_vs_BmtfTrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"BmtfMB4DeltaPhi_vs_BmtfTrackType;1" : {
-		"xlabel" : "BmtfMB4DeltaPhi_vs_BmtfTrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"MB_station_vs_wheel;1" : {
-		"xlabel" : "Wheel",
-		"ylabel" : "Station",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"MB_station_vs_wheel_Hq;1" : {
-		"xlabel" : "Wheel",
-		"ylabel" : "Station",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"MB_station_vs_wheel_Lq;1" : {
-		"xlabel" : "Wheel",
-		"ylabel" : "Station",
-		"color" : "black",
-		"subdir" : "bmtf",
-		"histtype" : "fill"
-	},
-	"usedMB_station_vs_wheel;1" : {
-		"xlabel" : "usedMB_station_vs_wheel",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "used",
-		"histtype" : "fill"
-	},
-	"usedMB_station_vs_wheel_Hq;1" : {
-		"xlabel" : "usedMB_station_vs_wheel_Hq",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "used",
-		"histtype" : "fill"
-	},
-	"usedMB_station_vs_wheel_Lq;1" : {
-		"xlabel" : "usedMB_station_vs_wheel_Lq",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "used",
-		"histtype" : "fill"
-	},
-	"unusedMB_station_vs_wheel;1" : {
-		"xlabel" : "unusedMB_station_vs_wheel",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "unused",
-		"histtype" : "fill"
-	},
-	"unusedMB_station_vs_wheel_Hq;1" : {
-		"xlabel" : "unusedMB_station_vs_wheel_Hq",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "unused",
-		"histtype" : "fill"
-	},
-	"unusedMB_station_vs_wheel_Lq;1" : {
-		"xlabel" : "unusedMB_station_vs_wheel_Lq",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "unused",
-		"histtype" : "fill"
-	},
-	"MuonPt_vs_mb1MatchedMuonDeltaEta;1" : {
-		"xlabel" : "MuonPt_vs_mb1MatchedMuonDeltaEta",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"MuonPt_vs_mb1MatchedMuonDeltaPhi;1" : {
-		"xlabel" : "MuonPt_vs_mb1MatchedMuonDeltaPhi",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"MuonPt_vs_mb1MatchedMuonDeltaR;1" : {
-		"xlabel" : "MuonPt_vs_mb1MatchedMuonDeltaR",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMatchedMuon",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonPt;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonPtDeltaPhiZero;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonEtaDeltaPhiZero;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonPt;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonEta;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonPtDeltaPhiZero;1" : {
-		"xlabel" : "$p_T$ / GeV",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonEtaDeltaPhiZero;1" : {
-		"xlabel" : "$\\eta$",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3HoMatchedWheel_vs_IEta;1" : {
-		"xlabel" : "$i\\eta$",
-		"ylabel" : "Wheel",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3HoMatchedPt_vs_BmtfMb3MatchedHoDeltaPhiMin;1" : {
-		"xlabel" : "BmtfMb3HoMatchedPt_vs_BmtfMb3MatchedHoDeltaPhiMin",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonCharge_vs_BmtfMb3MatchedHoIPhi;1" : {
-		"xlabel" : "BmtfMatchedMuonCharge_vs_BmtfMb3MatchedHoIPhi",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonPt_vs_Eta;1" : {
-		"xlabel" : "BmtfMb3MatchedMuonPt_vs_Eta",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonPt_vs_TrackType;1" : {
-		"xlabel" : "BmtfMb3MatchedMuonPt_vs_TrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb3MatchedMuonPt_vs_EtaDeltaPhiZero;1" : {
-		"xlabel" : "BmtfMb3MatchedMuonPt_vs_EtaDeltaPhiZero",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4HoMatchedWheel_vs_IEta;1" : {
-		"xlabel" : "BmtfMb4HoMatchedWheel_vs_IEta",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4HoMatchedPt_vs_BmtfMb4MatchedHoDeltaPhiMin;1" : {
-		"xlabel" : "BmtfMb4HoMatchedPt_vs_BmtfMb4MatchedHoDeltaPhiMin",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMatchedMuonCharge_vs_BmtfMb4MatchedHoIPhi;1" : {
-		"xlabel" : "BmtfMatchedMuonCharge_vs_BmtfMb4MatchedHoIPhi",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonPt_vs_Eta;1" : {
-		"xlabel" : "BmtfMb4MatchedMuonPt_vs_Eta",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonPt_vs_TrackType;1" : {
-		"xlabel" : "BmtfMb4MatchedMuonPt_vs_TrackType",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	},
-	"BmtfMb4MatchedMuonPt_vs_EtaDeltaPhiZero;1" : {
-		"xlabel" : "BmtfMb4MatchedMuonPt_vs_EtaDeltaPhiZero",
-		"ylabel" : "Events",
-		"color" : "black",
-		"subdir" : "bmtfMb34Matched",
-		"histtype" : "fill"
-	}
+	"sumQ;1" : {"xlabel" : "$\\sum q_i$ / fC", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalDetIds;1" : {"xlabel" : "hcalDetIds", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalQIESamples;1" : {"xlabel" : "hcalQIESamples", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalDetIdIEta;1" : {"xlabel" : "$i\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalDetIdIPhi;1" : {"xlabel" : "$i\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalQIESample;1" : {"xlabel" : "hcalQIESample", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalQIESampleAdc;1" : {"xlabel" : "hcalQIESampleAdc", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalQIESampleDv;1" : {"xlabel" : "hcalQIESampleDv", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"hcalQIESampleEr;1" : {"xlabel" : "hcalQIESampleEr", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"HoCmsEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"HoCmsPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"SampleEnergy;1" : {"xlabel" : "SampleEnergy", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"QIESampleFc;1" : {"xlabel" : "QIESampleFc", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"QIESamplePedestal;1" : {"xlabel" : "QIESamplePedestal", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"QIESampleFc_MPedestals;1" : {"xlabel" : "QIESampleFc_MPedestals", "ylabel" : "Events", "color" : "black", "subdir" : "hcal", "histtype" : "step"},
+	"muonMet;1" : {"xlabel" : "MET / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonMt;1" : {"xlabel" : "$m_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"isLooseMuon;1" : {"xlabel" : "isLooseMuon", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"isMediumMuon;1" : {"xlabel" : "isMediumMuon", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"isTightMuon;1" : {"xlabel" : "isTightMuon", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonHlt_isomu;1" : {"xlabel" : "muonHlt_isomu", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonHlt_mu;1" : {"xlabel" : "muonHlt_mu", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonPassesSingleMuon;1" : {"xlabel" : "muonPassesSingleMuon", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonCharge;1" : {"xlabel" : "$q_\\mu$ / fC", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonIEta;1" : {"xlabel" : "$i\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonE;1" : {"xlabel" : "$E$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonEt;1" : {"xlabel" : "$E_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonPt;1" : {"xlabel" : "$p_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonIso;1" : {"xlabel" : "muonIso", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonHlt_isoDeltaR;1" : {"xlabel" : "$\\Delta R$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonHlt_deltaR;1" : {"xlabel" : "$\\Delta R$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonEtaSt1;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonPhiSt1;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonEtaSt2;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"muonPhiSt2;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"dttpSize;1" : {"xlabel" : "$N_{DTTP}$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpBx;1" : {"xlabel" : "dttpBx", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpWheel;1" : {"xlabel" : "Wheel$\\left(DTTP\\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpSection;1" : {"xlabel" : "Section$\\left(DTTP\\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpStation;1" : {"xlabel" : "Station$\\left(DTTP\\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpQualitytCode;1" : {"xlabel" : "Quality Code$\\left(DTTP\\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpTs2Tag;1" : {"xlabel" : "dttpTs2Tag", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpPhi;1" : {"xlabel" : "$\\left( \\varphi - \\frac{\\pi}{6 * \\left(Section - 1\\right)} \\right) \\cdot 4096$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpPhiB;1" : {"xlabel" : "$\\varphi_B$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"dttpCmsPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "dttp", "histtype" : "step"},
+	"bmtfThSize;1" : {"xlabel" : "bmtfThSize", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"bmtfThBx;1" : {"xlabel" : "bmtfThBx", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"bmtfThWh;1" : {"xlabel" : "bmtfThWh", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"bmtfThSe;1" : {"xlabel" : "bmtfThSe", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"bmtfThSt;1" : {"xlabel" : "bmtfThSt", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"bmtfThTheta;1" : {"xlabel" : "bmtfThTheta", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"bmtfThCode;1" : {"xlabel" : "bmtfThCode", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"nTfMuon;1" : {"xlabel" : "$N_\\mu$", "ylabel" : "Events", "color" : "black", "subdir" : "rest", "histtype" : "step"},
+	"tfMuonHwPt;1" : {"xlabel" : "$p_T$ / $0.5$ GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonHwEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonHwPhi;1" : {"xlabel" : "$\\varphi \\left( local \\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonGlobalPhi;1" : {"xlabel" : "$\\varphi \\left( global \\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonHwSign;1" : {"xlabel" : "sgn$\\left(q_\\mu\\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonHwSignValid;1" : {"xlabel" : "tfMuonHwSignValid", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonHwQual;1" : {"xlabel" : "Quality", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonLink;1" : {"xlabel" : "tfMuonLink", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonProcessor;1" : {"xlabel" : "tfMuonProcessor", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonTrackFinderType;1" : {"xlabel" : "tfMuonTrackFinderType", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonHwHF;1" : {"xlabel" : "tfMuonHwHF", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonBx;1" : {"xlabel" : "tfMuonBx", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonWh;1" : {"xlabel" : "Wheel$\\left(\\mu\\right)$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"tfMuonTrAdd;1" : {"xlabel" : "tfMuonTrAdd", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"bmtfCmsPt;1" : {"xlabel" : "$p_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"bmtfCmsEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"bmtfCmsPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "muon", "histtype" : "step"},
+	"nUnusedMuon;1" : {"xlabel" : "$N_\\mu^{unused}$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"isMediumUnusedMuon;1" : {"xlabel" : "isMediumUnusedMuon", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonHltIsoMu;1" : {"xlabel" : "unusedMuonHltIsoMu", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonHltMu;1" : {"xlabel" : "unusedMuonHltMu", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonPassesSingleMuon;1" : {"xlabel" : "unusedMuonPassesSingleMuon", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonHasMb1;1" : {"xlabel" : "unusedMuonHasMb1", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"isBmtfMatchedMuon;1" : {"xlabel" : "isBmtfMatchedMuon", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"isMb3HoIEtaMatched;1" : {"xlabel" : "isMb3HoIEtaMatched", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"isMb4HoIEtaMatched;1" : {"xlabel" : "isMb4HoIEtaMatched", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"isDttpMatchedHo;1" : {"xlabel" : "isDttpMatchedHo", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"},
+	"isMuonMatchedDttp;1" : {"xlabel" : "isMuonMatchedDttp", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedMuon", "histtype" : "step"},
+	"unusedMuonCharge;1" : {"xlabel" : "$q_\\mu^{unused}$ / fQ", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonIEta;1" : {"xlabel" : "$i\\eta_\\mu^{unused}$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"bmtfMatchedMuonCharge;1" : {"xlabel" : "$q_\\mu$ / fQ", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMb34MatchedHoIEta;1" : {"xlabel" : "$i\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedHoIPhi;1" : {"xlabel" : "$i\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedHoDeltaIPhi;1" : {"xlabel" : "$\\Delta i\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"dttpMatchedHoDeltaIPhi;1" : {"xlabel" : "$\\Delta i\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"},
+	"dttpMatchedHoIPhi;1" : {"xlabel" : "$i\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"},
+	"dttpMatchedHoIEta;1" : {"xlabel" : "$i\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"},
+	"nHo3x3Hit;1" : {"xlabel" : "N_{Ho}^{3x3}", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"},
+	"unusedMuonE;1" : {"xlabel" : "$E$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonEt;1" : {"xlabel" : "$E_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonPt;1" : {"xlabel" : "$p_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonIso;1" : {"xlabel" : "unusedMuonIso", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonHltIsoDeltaR;1" : {"xlabel" : "$\\Delta R$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonDeltaR;1" : {"xlabel" : "$\\Delta R$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonEtaSt1;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonPhiSt1;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonEtaSt2;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonPhiSt2;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonMet;1" : {"xlabel" : "MET / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"unusedMuonMt;1" : {"xlabel" : "$m_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "unused", "histtype" : "step"},
+	"bmtfMatchedMuonDeltaR;1" : {"xlabel" : "$\\Delta R$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMatchedMuonPt;1" : {"xlabel" : "$p_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMatchedMuonEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMatchedMuonPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMatchedMuonTrackType;1" : {"xlabel" : "bmtfMatchedMuonTrackType", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMatchedMuonDeltaPhi;1" : {"xlabel" : "$\\Delta \\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMatchedMuon", "histtype" : "step"},
+	"bmtfMb34MatchedHoDeltaR;1" : {"xlabel" : "$\\Delta R$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedHoPt;1" : {"xlabel" : "$p_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedHoCmsEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedHoCmsPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedHoDeltaPhi;1" : {"xlabel" : "$\\Delta\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedMuonPt;1" : {"xlabel" : "$p_T$ / GeV", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedMuonEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedMuonPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"bmtfMb34MatchedMuonDeltaPhi;1" : {"xlabel" : "$\\Delta \\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "bmtfMb34Matched", "histtype" : "step"},
+	"dttpMatchedHoCmsPhi;1" : {"xlabel" : "$\\varphi$", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"},
+	"dttpMatchedHoCmsEta;1" : {"xlabel" : "$\\eta$", "ylabel" : "Events", "color" : "black", "subdir" : "dttpMatchedHo", "histtype" : "step"}
 }

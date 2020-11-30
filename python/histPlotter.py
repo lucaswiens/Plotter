@@ -71,6 +71,7 @@ if __name__ == "__main__":
 
 	outputDirectories = [args.output_directory,
 			args.output_directory + "/dttpMatchedMuon",
+			args.output_directory + "/dttpMatchedHo",
 			args.output_directory + "/bmtfMatchedDttp",
 			args.output_directory + "/bmtfMatchedMuon",
 			args.output_directory + "/bmtfMb34Matched",
@@ -93,9 +94,13 @@ if __name__ == "__main__":
 	histograms = uproot.open(args.input_file)
 
 	# Create the plots
+	numberOfHists = len(histograms.keys())
 	for figureNumber, key in enumerate(histograms.keys()):
 		if(args.verbose):
 			print(key)
+		else:
+			print("[" + "H" * figureNumber + "h" * numberOfHists + "]", end="\r")
+
 		plt.figure(figureNumber)
 		plt.ylabel(histConfig[key]["ylabel"])
 		plt.style.use(hep.style.CMS)
