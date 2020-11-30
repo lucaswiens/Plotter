@@ -633,6 +633,7 @@
 		"xlabel" : "$\\eta$",
 		"ylabel" : "$p_T$ / GeV",
 		"color" : "black",
+		"subdir" : "bmtfMatchedMuon",
 		"histtype" : "fill"
 	},
 	"BmtfMatchedMuonPt_vs_BmtfMatchedMuonPhi;1" : {
