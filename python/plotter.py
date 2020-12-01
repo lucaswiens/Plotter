@@ -25,7 +25,7 @@ if __name__ == "__main__":
 		help = "Path to the file containing a list of samples."
 	)
 	parser.add_argument("-o", "--output-directory",
-		default = "plots/"
+		default = "plots/",
 		help = "Path to the output directory to store the plots."
 	)
 	parser.add_argument("--no-date",
