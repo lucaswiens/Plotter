@@ -57,14 +57,16 @@ if __name__ == "__main__":
 	)
 	parser.add_argument("-s", "--samples",
 		nargs = "+",
-		#default = ["zll", "ttv", "vv", "qcd", "ttbarll", "singletop", "wjets", "ttbarl"],
 		default = ["ttbarl", "wjets", "singletop", "ttbarll", "qcd", "ttv", "vv", "zll", "data"],
 		help = "Samples. [Default: %(default)s]"
+	)
+	parser.add_argument("--year",
+		default = 2016,
+		help = "Set the year that should be plotted: %(default)s"
 	)
 	parser.add_argument("-x", "--quantities",
 		nargs = "+",
 		required = True,
-		#default = ["LeptonPt", "LeptonEta"],
 		help = "Quantities. [Default: %(default)s]"
 	)
 	parser.add_argument("-dpi", "--dots-per-inch",
@@ -86,6 +88,10 @@ if __name__ == "__main__":
 	)
 	parser.add_argument("--font-size",
 		default = 18,
+		help = "Set the filetypes of the output: %(default)s"
+	)
+	parser.add_argument("--label-font",
+		default = 20,
 		help = "Set the filetypes of the output: %(default)s"
 	)
 	parser.add_argument("--number-of-cols",
@@ -210,7 +216,6 @@ if __name__ == "__main__":
 					if isData:
 						hist.fill(ak.flatten(currentQuantity))
 					else:
-						print(currentWeight)
 						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
 						hist = hist * xSection * luminosity
 				else:
@@ -234,34 +239,59 @@ if __name__ == "__main__":
 	for figureNumber, quantity in enumerate(args.quantities):
 		if args.unblind and "data" in args.samples:
 			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
-			axs[0].set_ylabel(args.y_label)
 		else:
 			fig = plt.figure(figureNumber)
-			plt.ylabel(args.y_label)
-
-		plt.style.use(hep.style.CMS)
-		hep.cms.label(ax = axs[0])
-		plt.xlabel(plotConfig[quantity]["label"], ha = "left")
 
 		for sampleNumber, sample in enumerate(args.samples):
 			isData = True if sampleConfigs[sample]["isData"] == "True" else False
 			if args.unblind:
 				if isData:
 					dataHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
+					hep.histplot(histPerSample[sampleNumber][figureNumber],
+						label = sampleConfigs[sample]["label"],
+						color = sampleConfigs[sample]["color"],
+						histtype = sampleConfigs[sample]["histtype"],
+						stack = not isData,
+						ax = axs[0]
+					)
 				else:
-					mcHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
+					mcHist[figureNumber] += histPerSample[sampleNumber][figureNumber] / nGenEvents
+					hep.histplot(histPerSample[sampleNumber][figureNumber] / nGenEvents,
+						label = sampleConfigs[sample]["label"],
+						color = sampleConfigs[sample]["color"],
+						histtype = sampleConfigs[sample]["histtype"],
+						stack = not isData,
+						ax = axs[0]
+					)
 
-				hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData, ax = axs[0])
 			else:
-				hep.histplot(histPerSample[sampleNumber][figureNumber], label = sampleConfigs[sample]["label"], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData)
+				hep.histplot(histPerSample[sampleNumber][figureNumber] / nGenEvents,
+					label = sampleConfigs[sample]["label"],
+					color = sampleConfigs[sample]["color"],
+					histtype = sampleConfigs[sample]["histtype"],
+					stack = not isData
+				)
 
 		if args.unblind and "data" in args.samples:
-			hep.histplot(dataHist[figureNumber] / mcHist[figureNumber], color = sampleConfigs[sample]["color"], histtype = sampleConfigs[sample]["histtype"], stack = not isData, ax = axs[1])
+			hep.histplot(dataHist[figureNumber] / mcHist[figureNumber],
+				color = sampleConfigs[sample]["color"],
+				histtype = sampleConfigs[sample]["histtype"],
+				stack = not isData,
+				ax = axs[1]
+			)
+
+		plt.style.use(hep.style.CMS)
 
 		if args.unblind and "data" in args.samples:
-			axs[0].legend(fontsize = args.font_size, ncol = args.number_of_cols)
+			hep.cms.label(lumi = common.GetLuminosity(str(args.year)), ax = axs[0])
+			axs[0].legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			axs[0].set_ylabel(args.y_label)
+			axs[1].set_xlabel(plotConfig[quantity]["label"], ha = "left")
 		else:
-			plt.legend(fontsize = args.font_size, ncol = args.number_of_cols)
+			hep.cms.label(lumi = common.GetLuminosity(str(args.year)))
+			plt.legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			plt.ylabel(args.y_label, fontsize = args.label_font)
+			plt.xlabel(plotConfig[quantity]["label"], ha = "left", fontsize = args.label_font)
 
 		plt.savefig(args.output_directory + "/" + quantity + ".png")
 		plt.savefig(args.output_directory + "/" + quantity + ".pdf")
@@ -271,7 +301,7 @@ if __name__ == "__main__":
 			axs[1].set_yscale("linear")
 		else:
 			plt.yscale("log")
-		#plt.yscale("log")
+
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")
 
