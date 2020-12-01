@@ -25,8 +25,13 @@ if __name__ == "__main__":
 		help = "Path to the file containing a list of samples."
 	)
 	parser.add_argument("-o", "--output-directory",
-		default = "plots/" + date,
+		default = "plots/"
 		help = "Path to the output directory to store the plots."
+	)
+	parser.add_argument("--no-date",
+		default = False,
+		action = "store_true",
+		help = "Will only plot data if you want to unblind: %(defualt)s"
 	)
 	parser.add_argument("--keys",
 		help = "Prints keys of the root files inside the input directory",
@@ -104,6 +109,9 @@ if __name__ == "__main__":
 
 	if not os.path.exists(args.output_directory):
 		os.makedirs(args.output_directory)
+
+	if not args.no_date:
+		args.output_directory = args.output_directory + date
 
 	with open(args.plot_config) as config_file:
 		plotConfig = json.load(config_file)
