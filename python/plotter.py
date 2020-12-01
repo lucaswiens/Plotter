@@ -130,41 +130,37 @@ if __name__ == "__main__":
 		print(events.keys())
 		exit();
 
+	if not args.unblind and "data" in args.samples:
+		args.samples.remove("data")
+
+	nGenEvents = 0
+
 	# Fill Histograms
 	histPerSample = []
 	nSamples = len(args.samples)
 	nQuantities = len(args.quantities)
-	if not args.unblind and "data" in args.samples:
-		args.samples.remove("data")
 	for sampleIndex, sample in enumerate(args.samples):
 		isData = True if sampleConfigs[sample]["isData"] == "True" else False
 
 		histPerQuantity = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
-
-		if args.test_run:
-			print("Warning! You are making a test plot, the result will not show an accurate Event number!"
-			print("This would need to use the information of all files. Use this only to test configs or for debugging!"
-			directoryList = [sampleConfigs[sample]["samplename"][0]]
-		else:
-			directoryList = sampleConfigs[sample]["samplename"]
-
 		fileList = []
-		for directory in directoryList:
+		for directory in sampleConfigs[sample]["samplename"]:
 			for root, dirs, files in os.walk(args.input_directory + directory):
 				for f in files:
 					fileList.append(directory + "/" + f)
-					if (args.test_run):
-						break
+
+		nGenEvents += sum([uproot.open(args.input_directory + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0] for fileName in fileList])
+
+		if args.test_run:
+			fileList = [fileList[0]]
 
 		nFiles = len(fileList)
-		nEvents = 0
 		for fileIndex, fileName in enumerate(fileList):
 			xSection = common.GetXSection(fileName)
 			if xSection == 0:
 				continue
 			luminosity = common.GetLuminosity(fileName)
 
-			nEvents += uproot.open(args.input_directory + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0]
 			histPerFile = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
 			quantityIndex = 0
@@ -188,7 +184,6 @@ if __name__ == "__main__":
 						currentWeight = currentWeight * tmpWeight.mask[ak.num(tmpWeight) > indexOfInterest][:,indexOfInterest]
 					else:
 						currentWeight = currentWeight * tmpWeight
-
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
 					cut = cut.replace(" ", "").replace("\t", "")
 					currentCut = currentTree[re.sub("_[0-9]", "", cut)].array(library="ak")
@@ -196,19 +191,19 @@ if __name__ == "__main__":
 						indexOfInterest = int(cut[-1]) - 1
 						currentCut = currentCut.mask[ak.num(currentCut) > indexOfInterest][:,indexOfInterest]
 					if (condition == "True"):
-						currentQuantity.mask[currentCut]
+						currentQuantity = currentQuantity.mask[currentCut]
 					elif (condition[0:2] == ">="):
-						currentQuantity.mask[currentCut >= int(condition[2:])]
+						currentQuantity = currentQuantity.mask[currentCut >= int(condition[2:])]
 					elif (condition[0:2] == "<="):
-						currentQuantity.mask[currentCut <= int(condition[2:])]
+						currentQuantity = currentQuantity.mask[currentCut <= int(condition[2:])]
 					elif (condition[0] == ">"):
-						currentQuantity.mask[currentCut > int(condition[1:])]
+						currentQuantity = currentQuantity.mask[currentCut > int(condition[1:])]
 					elif (condition[0] == "<"):
-						currentQuantity.mask[currentCut > int(condition[1:])]
+						currentQuantity = currentQuantity.mask[currentCut > int(condition[1:])]
 					elif (condition[0:2] == "!="):
-						currentQuantity.mask[currentCut != int(condition[2:])]
+						currentQuantity = currentQuantity.mask[currentCut != int(condition[2:])]
 					elif (condition[0:2] == "=="):
-						currentQuantity.mask[currentCut == int(condition[2:])]
+						currentQuantity = currentQuantity.mask[currentCut == int(condition[2:])]
 					else:
 						print("Check your plotConfig.json! The cut condition is improperly defined!")
 						exit(-1)
@@ -226,10 +221,7 @@ if __name__ == "__main__":
 						hist = hist * xSection * luminosity
 				finalHist += hist
 			currentTree.close()
-		if args.unblind and "data" in args.samples:
-			histPerSample.append([hist / nEvents for hist in histPerQuantity[:-1]] + [histPerQuantity[-1]])
-		else:
-			histPerSample.append([hist / nEvents for hist in histPerQuantity])
+		histPerSample.append(histPerQuantity)
 
 	# Create the plots
 	if args.unblind and "data" in args.samples:
