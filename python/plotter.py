@@ -13,6 +13,8 @@ import os
 import re
 import subprocess
 
+from numpy import sqrt
+
 import common
 
 if __name__ == "__main__":
@@ -25,7 +27,7 @@ if __name__ == "__main__":
 		help = "Path to the file containing a list of samples."
 	)
 	parser.add_argument("-o", "--output-directory",
-		default = "plots/",
+		default = "websync/",
 		help = "Path to the output directory to store the plots."
 	)
 	parser.add_argument("--no-date",
@@ -57,7 +59,7 @@ if __name__ == "__main__":
 	)
 	parser.add_argument("-s", "--samples",
 		nargs = "+",
-		default = ["ttbarl", "wjets", "singletop", "ttbarll", "qcd", "ttv", "vv", "zll", "data"],
+		default = ["ttv", "ttbarl", "ttbarll", "qcd", "singletop", "wjets", "zll", "vv", "data"],
 		help = "Samples. [Default: %(default)s]"
 	)
 	parser.add_argument("--year",
@@ -87,11 +89,11 @@ if __name__ == "__main__":
 		help = "Set the filetypes of the output: %(default)s"
 	)
 	parser.add_argument("--font-size",
-		default = 18,
+		default = 20,
 		help = "Set the filetypes of the output: %(default)s"
 	)
 	parser.add_argument("--label-font",
-		default = 20,
+		default = 32,
 		help = "Set the filetypes of the output: %(default)s"
 	)
 	parser.add_argument("--number-of-cols",
@@ -113,11 +115,12 @@ if __name__ == "__main__":
 	if not args.input_directory[-1] == "/":
 		args.input_directory += "/"
 
+	if not args.no_date:
+		args.output_directory = args.output_directory + "/" * (args.output_directory[-1] != "/") + date
+
 	if not os.path.exists(args.output_directory):
 		os.makedirs(args.output_directory)
 
-	if not args.no_date:
-		args.output_directory = args.output_directory + date
 
 	with open(args.plot_config) as config_file:
 		plotConfig = json.load(config_file)
@@ -134,6 +137,7 @@ if __name__ == "__main__":
 		args.samples.remove("data")
 
 	nGenEvents = 0
+	#nGenEvents = 898451086.0
 
 	# Fill Histograms
 	histPerSample = []
@@ -145,11 +149,14 @@ if __name__ == "__main__":
 		histPerQuantity = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 		fileList = []
 		for directory in sampleConfigs[sample]["samplename"]:
+			if directory[0] == "#":
+				break
 			for root, dirs, files in os.walk(args.input_directory + directory):
 				for f in files:
 					fileList.append(directory + "/" + f)
 
-		nGenEvents += sum([uproot.open(args.input_directory + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0] for fileName in fileList])
+		if not isData:
+			nGenEvents += sum([uproot.open(args.input_directory + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0] for fileName in fileList])
 
 		if args.test_run:
 			fileList = [fileList[0]]
@@ -192,6 +199,8 @@ if __name__ == "__main__":
 						currentCut = currentCut.mask[ak.num(currentCut) > indexOfInterest][:,indexOfInterest]
 					if (condition == "True"):
 						currentQuantity = currentQuantity.mask[currentCut]
+					elif (condition == "False"):
+						currentQuantity = currentQuantity.mask[~currentCut]
 					elif (condition[0:2] == ">="):
 						currentQuantity = currentQuantity.mask[currentCut >= int(condition[2:])]
 					elif (condition[0:2] == "<="):
@@ -212,13 +221,13 @@ if __name__ == "__main__":
 						hist.fill(ak.flatten(currentQuantity))
 					else:
 						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-						hist = hist * xSection * luminosity
+						hist = hist * xSection * 1000 * luminosity
 				else:
 					if isData:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
 					else:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-						hist = hist * xSection * luminosity
+						hist = hist * xSection * 1000 * luminosity
 				finalHist += hist
 			currentTree.close()
 		histPerSample.append(histPerQuantity)
@@ -228,12 +237,16 @@ if __name__ == "__main__":
 		mcHist   = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 		dataHist = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
 
+	plt.figure()
+	plt.style.use(hep.style.CMS)
+	plt.close()
 	for figureNumber, quantity in enumerate(args.quantities):
 		if args.unblind and "data" in args.samples:
 			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
 		else:
 			fig = plt.figure(figureNumber)
 
+		plt.style.use(hep.style.CMS)
 		for sampleNumber, sample in enumerate(args.samples):
 			isData = True if sampleConfigs[sample]["isData"] == "True" else False
 			if args.unblind:
@@ -243,7 +256,8 @@ if __name__ == "__main__":
 						label = sampleConfigs[sample]["label"],
 						color = sampleConfigs[sample]["color"],
 						histtype = sampleConfigs[sample]["histtype"],
-						stack = not isData,
+						stack = False,
+						yerr = True,
 						ax = axs[0]
 					)
 				else:
@@ -265,35 +279,62 @@ if __name__ == "__main__":
 				)
 
 		if args.unblind and "data" in args.samples:
-			hep.histplot(dataHist[figureNumber] / mcHist[figureNumber],
+			ratio = dataHist[figureNumber] / mcHist[figureNumber]
+			#statUnc = ratio * sqrt((1. / mcHist[figureNumber]) + (1. / dataHist[figureNumber]))
+			statUnc = sqrt(ratio * (ratio / mcHist[figureNumber] + ratio / dataHist[figureNumber]))
+
+			axs[1].axhline(1.0, color = "#6c5d53")
+			axs[1].fill_between(ratio.axes[0].centers, 1 - statUnc, 1 + statUnc, alpha = 0.3, facecolor = "#6c5d53")
+			hep.histplot(ratio,
 				color = sampleConfigs[sample]["color"],
 				histtype = sampleConfigs[sample]["histtype"],
-				stack = not isData,
+				stack = False,
+				yerr = True,
 				ax = axs[1]
 			)
 
-		plt.style.use(hep.style.CMS)
-
 		if args.unblind and "data" in args.samples:
-			hep.cms.label(lumi = common.GetLuminosity(str(args.year)), ax = axs[0])
-			axs[0].legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			hep.cms.label(data = True, lumi = common.GetLuminosity(str(args.year)), year = "", ax = axs[0])
+			axs[0].legend(ncol = args.number_of_cols, loc = "upper right")
 			axs[0].set_ylabel(args.y_label)
-			axs[1].set_xlabel(plotConfig[quantity]["label"], ha = "left")
+			axs[1].set_xlabel(plotConfig[quantity]["label"])
+			#axs[0].legend(ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			#axs[0].set_ylabel(args.y_label)
+			#axs[1].set_xlabel(plotConfig[quantity]["label"])
+			axs[0].set_ylim(0, 2e5)
+			#axs[0].legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			#axs[0].set_ylabel(args.y_label, fontsize = args.label_font)
+			#axs[1].set_xlabel(plotConfig[quantity]["label"], fontsize = args.label_font)
 		else:
-			hep.cms.label(lumi = common.GetLuminosity(str(args.year)))
-			plt.legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
-			plt.ylabel(args.y_label, fontsize = args.label_font)
-			plt.xlabel(plotConfig[quantity]["label"], ha = "left", fontsize = args.label_font)
+			hep.cms.label(lumi = common.GetLuminosity(str(args.year)), year = "")
+			plt.legend(ncol = args.number_of_cols, loc = "upper right")
+			plt.ylabel(args.y_label)
+			plt.xlabel(plotConfig[quantity]["label"])
+			#plt.legend(ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			#plt.ylabel(args.y_label)
+			#plt.xlabel(plotConfig[quantity]["label"])
+			plt.ylim(0, 2e5)
+			#plt.legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
+			#plt.ylabel(args.y_label, fontsize = args.label_font)
+			#plt.xlabel(plotConfig[quantity]["label"], fontsize = args.label_font)
 
+		fig.tight_layout()
+		plt.subplots_adjust(hspace = 0.05)
 		plt.savefig(args.output_directory + "/" + quantity + ".png")
 		plt.savefig(args.output_directory + "/" + quantity + ".pdf")
 
 		if args.unblind and "data" in args.samples:
 			axs[0].set_yscale("log")
 			axs[1].set_yscale("linear")
+			axs[0].set_ylim(1e-3, 5e7)
+			#axs[0].style.use(hep.style.CMS)
+			#axs[1].style.use(hep.style.CMS)
 		else:
 			plt.yscale("log")
+			plt.ylim(1e-3, 5e7)
+			#plt.style.use(hep.style.CMS)
 
+		#plt.style.use(hep.style.CMS)
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")
 
@@ -303,4 +344,3 @@ if __name__ == "__main__":
 
 	plottingUrl = common.GetOSVariable("PLOTTING_URL")
 	print(plottingUrl + "/" + args.output_directory)
-
