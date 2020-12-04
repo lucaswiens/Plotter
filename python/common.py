@@ -2,18 +2,17 @@ import os
 import re
 import string
 
-def GetLuminosity(fileName): #[pb^-1]
+def GetLuminosity(fileName): #[fb^-1]
 		if re.search("2016", fileName) or re.search("RunIISummer16", fileName):
-			return 35.90 * 1000
+			return 35.90
 		elif re.search("2017", fileName):
-			return 41.90 * 1000
+			return 41.90
 		elif re.search("2018", fileName):
-			return 59.74 * 1000
+			return 59.74
 		else:
 			print("Luminosity not defined for %s!!" % fileName)
 			return 0
 
-#TODO should be made prettier
 def GetXSection(fileName): #[pb]
 	if   fileName.find("DYJetsToLL_M-50_HT-70to100"             ) != -1 : return 169.9# ± 0.5
 	elif fileName.find("DYJetsToLL_M-50_HT-100to200"            ) != -1 : return 147.40# ± 0.09
@@ -34,17 +33,16 @@ def GetXSection(fileName): #[pb]
 	elif fileName.find("QCD_HT1000to1500_TuneCUETP8M1"          ) != -1 : return 1207#± 0.5
 	elif fileName.find("QCD_HT1500to2000_TuneCUETP8M1"          ) != -1 : return 119.9#± 0.06
 	elif fileName.find("QCD_HT2000toInf_TuneCUETP8M1"           ) != -1 : return 25.24#± 0.02
-	elif fileName.find("TT_TuneCUETP8M2T4"                      ) !=-1 : return  831.76      ;
-	elif fileName.find("TT_TuneEE5C_13TeV-powheg-herwigpp"      ) !=-1 : return  831.76      ;
+	#elif fileName.find("TT_TuneCUETP8M2T4"                      ) !=-1 : return  831.76      ;
+	#elif fileName.find("TT_TuneEE5C_13TeV-powheg-herwigpp"      ) !=-1 : return  831.76      ;
+	#elif fileName.find("TTTo2L2Nu_13TeV") != -1 : return 87.31#+2.08-3.07+3.68-3.68pb
+	#elif fileName.find("TTJets_"                                ) !=-1 : return  831.76      ;
 	elif fileName.find("TTTo2L2Nu_13TeV") != -1 : return 87.31#+2.08-3.07+3.68-3.68pb
-	elif fileName.find("TTJets_"                                ) !=-1 : return  831.76      ;
-	## elif fileName.find("TTTo2L2Nu_13TeV") != -1 : return 87.31#+2.08-3.07+3.68-3.68pb
-	## elif fileName.find("TT_TuneCUETP8M1") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
-	## elif fileName.find("TT_TuneZ2star_13TeV") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
-	## elif fileName.find("TTJets_TuneCUETP8M1") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
-	## elif fileName.find("TTJets_TuneCUETP8M1") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
-	## #elif fileName.find("TTJets_SingleLeptFromT_TuneCUETP8M1") != -1 : return #filler
-	## elif fileName.find("TTJets_HT-2500toInf_TuneCUETP8M1") != -1 : return 0.001430#±0.000017
+	elif fileName.find("TT_TuneCUETP8M1") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
+	elif fileName.find("TT_TuneZ2star_13TeV") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
+	elif fileName.find("TTJets_HT-2500toInf_TuneCUETP8M1") != -1 : return 0.001430#±0.000017
+	elif fileName.find("TTJets_") != -1 : return 831.76#+19.77-29.20+35.06-35.06pb
+	#elif fileName.find("TTJets_SingleLeptFromT_TuneCUETP8M1") != -1 : return #filler
 	elif fileName.find("WJetsToLNu_TuneCUETP8M1_13TeV") != -1 : return 61526.7#+497.1-264.6±2312.7pb
 	#elif fileName.find("WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8") != -1 : return 61526.7#+497.1-264.6±2312.7pb
 	elif fileName.find("WJetsToLNu_HT-100To200"                 ) != -1 : return 1345#±1.2
@@ -112,6 +110,9 @@ def GetXSection(fileName): #[pb]
 	elif fileName.find("WGToLNuG_TuneCUETP8M1_13TeV-madgraphMLM-pythia8") != -1 : return 405.271
 	elif fileName.find("WGToLNuG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8") != -1 : return 489
 	elif fileName.find("ZGTo2LG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8") != -1 : return 117.864
+	elif fileName.find("TGJets") != -1 : return 2.967#+- 0.01052 	NLO
+	elif fileName.find("tZq_ll_") != -1 : return 0.0758
+	elif fileName.find("tZq_nunu_4f") != -1 : return 0.1379
 	elif fileName.find("SingleMuon")!=-1  or fileName.find("SingleElectron") !=-1 or fileName.find("JetHT")  !=-1 or fileName.find("MET") !=-1 or fileName.find("MTHT") !=-1: return 1.
 	else:
 		print("Cross section not defined. Skipping the %s sample." % fileName)
@@ -133,8 +134,8 @@ def progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityI
 	if nFiles < barSize:
 		barSize = nFiles
 
-	print("[" + "S" * sampleIndex   + "s" * (nSamples - sampleIndex) + "] "
-		"[" + "F" * int(fileRatio * barSize) + "f" * int((1 - fileRatio) * barSize) + "] "
+	print("[" + "S" * sampleIndex   + "s" * (nSamples - sampleIndex) + "] " +
+		"[" + "F" * int(fileRatio * barSize) + "f" * int((1 - fileRatio) * barSize) + "] " +
 		"[" + "Q" * quantityIndex + "q" * (nQuantities - quantityIndex) + "] " + quantity,
 		end="\r"
 	)
