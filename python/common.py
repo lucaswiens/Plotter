@@ -2,6 +2,16 @@ import os
 import re
 import string
 
+import awkward1 as ak
+import boost_histogram as bh
+
+
+def ConstructHistogram(plotConfig, quantity):
+	if plotConfig[quantity]["isRegular"] == "True":
+		return bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])
+	else:
+		return bh.axis.Variable(plotConfig[quantity]["binning"])
+
 def GetLuminosity(fileName): #[fb^-1]
 		if re.search("2016", fileName) or re.search("RunIISummer16", fileName):
 			return 35.90

@@ -146,7 +146,8 @@ if __name__ == "__main__":
 	for sampleIndex, sample in enumerate(args.samples):
 		isData = True if sampleConfigs[sample]["isData"] == "True" else False
 
-		histPerQuantity = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
+		histPerQuantity = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
+
 		fileList = []
 		for directory in sampleConfigs[sample]["samplename"]:
 			if directory[0] == "#":
@@ -168,7 +169,7 @@ if __name__ == "__main__":
 				continue
 			luminosity = common.GetLuminosity(fileName)
 
-			histPerFile = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
+			histPerFile = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
 			quantityIndex = 0
 			for quantity, hist, finalHist in zip(args.quantities, histPerFile, histPerQuantity):
@@ -234,8 +235,8 @@ if __name__ == "__main__":
 
 	# Create the plots
 	if args.unblind and "data" in args.samples:
-		mcHist   = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
-		dataHist = [bh.Histogram(bh.axis.Regular(plotConfig[quantity]["nBins"], plotConfig[quantity]["x_min"], plotConfig[quantity]["x_max"])) for quantity in args.quantities]
+		mcHist   = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
+		dataHist = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
 
 	plt.figure()
 	plt.style.use(hep.style.CMS)
@@ -297,26 +298,15 @@ if __name__ == "__main__":
 			hep.cms.label(data = True, lumi = common.GetLuminosity(str(args.year)), year = "", ax = axs[0])
 			axs[0].legend(ncol = args.number_of_cols, loc = "upper right")
 			axs[0].set_ylabel(args.y_label)
+			axs[1].set_ylabel(args.y_sub_label)
 			axs[1].set_xlabel(plotConfig[quantity]["label"])
-			#axs[0].legend(ncol = args.number_of_cols, frameon = False, loc = "upper right")
-			#axs[0].set_ylabel(args.y_label)
-			#axs[1].set_xlabel(plotConfig[quantity]["label"])
-			axs[0].set_ylim(0, 2e5)
-			#axs[0].legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
-			#axs[0].set_ylabel(args.y_label, fontsize = args.label_font)
-			#axs[1].set_xlabel(plotConfig[quantity]["label"], fontsize = args.label_font)
+			axs[0].set_ylim(0, 1.25e5)
 		else:
 			hep.cms.label(lumi = common.GetLuminosity(str(args.year)), year = "")
 			plt.legend(ncol = args.number_of_cols, loc = "upper right")
 			plt.ylabel(args.y_label)
 			plt.xlabel(plotConfig[quantity]["label"])
-			#plt.legend(ncol = args.number_of_cols, frameon = False, loc = "upper right")
-			#plt.ylabel(args.y_label)
-			#plt.xlabel(plotConfig[quantity]["label"])
-			plt.ylim(0, 2e5)
-			#plt.legend(fontsize = args.font_size, ncol = args.number_of_cols, frameon = False, loc = "upper right")
-			#plt.ylabel(args.y_label, fontsize = args.label_font)
-			#plt.xlabel(plotConfig[quantity]["label"], fontsize = args.label_font)
+			plt.ylim(0, 1.25e5)
 
 		fig.tight_layout()
 		plt.subplots_adjust(hspace = 0.05)
@@ -327,14 +317,10 @@ if __name__ == "__main__":
 			axs[0].set_yscale("log")
 			axs[1].set_yscale("linear")
 			axs[0].set_ylim(1e-3, 5e7)
-			#axs[0].style.use(hep.style.CMS)
-			#axs[1].style.use(hep.style.CMS)
 		else:
 			plt.yscale("log")
 			plt.ylim(1e-3, 5e7)
-			#plt.style.use(hep.style.CMS)
 
-		#plt.style.use(hep.style.CMS)
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")
 

@@ -1,6 +1,7 @@
 {
 	"LeptonPt" : {
 		"label" : "$p_{T} /$ GeV",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : 0,
 		"x_max" : 200,
@@ -20,6 +21,7 @@
 	},
 	"LeptonPt_1" : {
 		"label" : "$p_{T} /$ GeV",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : 0,
 		"x_max" : 200,
@@ -38,6 +40,7 @@
 	},
 	"LeptonEta_1" : {
 		"label" : "$\\eta$",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : -2.5,
 		"x_max" : 2.5,
@@ -57,6 +60,7 @@
 	},
 	"LeptonPhi_1" : {
 		"label" : "$\\varphi$",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : 3.1415927,
 		"x_max" : -3.1415927,
@@ -76,6 +80,7 @@
 	},
 	"LP" : {
 		"label" : "$LP",
+		"isRegular" : "True",
 		"nBins" : 30,
 		"x_min" : -0.5,
 		"x_max" : 0.5,
@@ -95,6 +100,7 @@
 	},
 	"LT" : {
 		"label" : "$LT /$ GeV",
+		"isRegular" : "True",
 		"nBins" : 30,
 		"x_min" : 250,
 		"x_max" : 1000,
@@ -114,6 +120,8 @@
 	},
 	"HT" : {
 		"label" : "$HT$ / GeV",
+		"isRegular" : "False",
+		"binning" : [500, 750, 1000, 1250, 2500],
 		"nBins" : 30,
 		"x_min" : 500,
 		"x_max" : 2000,
@@ -133,6 +141,7 @@
 	},
 	"METPt" : {
 		"label" : "$p_{T}^{miss} /$ GeV",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : 0,
 		"x_max" : 200,
@@ -150,6 +159,7 @@
 	},
 	"JetPt" : {
 		"label" : "Jet $p_T$ / GeV",
+		"isRegular" : "True",
 		"nBins" : 30,
 		"x_min" : 0,
 		"x_max" : 1000,
@@ -169,6 +179,7 @@
 	},
 	"JetPt_1" : {
 		"label" : "Leading Jet $p_T$ / GeV",
+		"isRegular" : "True",
 		"nBins" : 30,
 		"x_min" : 0,
 		"x_max" : 1000,
@@ -188,6 +199,7 @@
 	},
 	"JetPt_2" : {
 		"label" : "Trailing Jet $p_T$ / GeV",
+		"isRegular" : "True",
 		"nBins" : 30,
 		"x_min" : 0,
 		"x_max" : 1000,
@@ -207,6 +219,7 @@
 	},
 	"JetEta_1" : {
 		"label" : "$\\eta$",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : -2.5,
 		"x_max" : 2.5,
@@ -226,6 +239,7 @@
 	},
 	"JetPhi_1" : {
 		"label" : "$\\varphi$",
+		"isRegular" : "True",
 		"nBins" : 20,
 		"x_min" : 3.1415927,
 		"x_max" : -3.1415927,
@@ -246,6 +260,7 @@
 
 	"nJet" : {
 		"label" : "$N_{Jet}$",
+		"isRegular" : "True",
 		"nBins" : 10,
 		"x_min" : 0,
 		"x_max" : 10,
@@ -264,6 +279,7 @@
 	},
 	"nMediumCSVBTagJet" : {
 		"label" : "$N_{b}^{medium}$",
+		"isRegular" : "True",
 		"nBins" : 10,
 		"x_min" : 0,
 		"x_max" : 10,
@@ -281,6 +297,7 @@
 	},
 	"IsoTrackVeto" : {
 		"label" : "$N_{b}^{medium}$",
+		"isRegular" : "True",
 		"nBins" : 10,
 		"x_min" : 0,
 		"x_max" : 10,
