@@ -49,6 +49,10 @@ if __name__ == "__main__":
 		default = "Events",
 		help = "Label of the y-axis"
 	)
+	parser.add_argument("--y-sub-label",
+		default = "Data / MC",
+		help = "Label of the y-axis"
+	)
 	parser.add_argument("--plot-config",
 		default = cmsswBase + "/src/Plotting/Plotter/data/config/plotConfig.json",
 		help = "Path to the json file used to create plots: %(default)s"
