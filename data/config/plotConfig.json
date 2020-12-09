@@ -186,7 +186,7 @@
 		"cutvariables" : [
 			["nLepton", "==1"],
 			["LeptonPt_1", ">25"],
-			["HLTLeptonOr", "True"],
+			["HLTLeptonOr || HLTMETOr", "True"],
 			["IsoTrackVeto", "False"],
 			["METPt", "<5"],
 			["nJet", ">3"],

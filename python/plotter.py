@@ -193,30 +193,8 @@ if __name__ == "__main__":
 					else:
 						currentWeight = currentWeight * tmpWeight
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
-					cut = cut.replace(" ", "").replace("\t", "")
-					currentCut = currentTree[re.sub("_[0-9]", "", cut)].array(library="ak")
-					if re.search("_[1-9]", cut):
-						indexOfInterest = int(cut[-1]) - 1
-						currentCut = currentCut.mask[ak.num(currentCut) > indexOfInterest][:,indexOfInterest]
-					if (condition == "True"):
-						currentQuantity = currentQuantity.mask[currentCut]
-					elif (condition == "False"):
-						currentQuantity = currentQuantity.mask[~currentCut]
-					elif (condition[0:2] == ">="):
-						currentQuantity = currentQuantity.mask[currentCut >= int(condition[2:])]
-					elif (condition[0:2] == "<="):
-						currentQuantity = currentQuantity.mask[currentCut <= int(condition[2:])]
-					elif (condition[0] == ">"):
-						currentQuantity = currentQuantity.mask[currentCut > int(condition[1:])]
-					elif (condition[0] == "<"):
-						currentQuantity = currentQuantity.mask[currentCut > int(condition[1:])]
-					elif (condition[0:2] == "!="):
-						currentQuantity = currentQuantity.mask[currentCut != int(condition[2:])]
-					elif (condition[0:2] == "=="):
-						currentQuantity = currentQuantity.mask[currentCut == int(condition[2:])]
-					else:
-						print("Check your plotConfig.json! The cut condition is improperly defined!")
-						exit(-1)
+					currentQuantity = common.MaskQuantity(currentTree, currentQuantity, cut, condition)
+
 				if isinstance(currentQuantity[0], ak.highlevel.Array):
 					if isData:
 						hist.fill(ak.flatten(currentQuantity))
