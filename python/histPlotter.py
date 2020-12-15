@@ -98,8 +98,8 @@ if __name__ == "__main__":
 	for figureNumber, key in enumerate(histograms.keys()):
 		if(args.verbose):
 			print(key)
-		else:
-			print("[" + "H" * figureNumber + "h" * numberOfHists + "]", end="\r")
+		#else:
+			#print("[" + "H" * figureNumber + "h" * numberOfHists + "]", end="\r")
 
 		plt.figure(figureNumber)
 		plt.ylabel(histConfig[key]["ylabel"])

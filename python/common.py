@@ -7,35 +7,42 @@ import string
 import awkward1 as ak
 import boost_histogram as bh
 
-def MaskQuantity(currentTree, currentQuantity, cut, condition):
+def GetFromDict(tree, dictionairy, key):
+	keyString = re.sub("_[0-9]", "", key)
+	if not keyString in dictionairy.keys():
+		dictionairy[keyString] = tree[keyString].array(library="ak")
+	if re.search("_[1-9]", key):
+		indexOfInterest = int(key[-1]) - 1
+		return dictionairy[keyString].mask[ak.num(dictionairy[keyString]) > indexOfInterest][:,indexOfInterest]
+	else:
+		return dictionairy[keyString]
+
+def MaskQuantity(currentTree, currentQuantity, cutDict, cut, condition):
 	cut = cut.replace(" ", "").replace("\t", "")
 	if re.search("||", cut):
 		orStrings = cut.split("||")
 		if re.search("&&", orStrings[0]):
 			andStrings = orStrings[0].split("&&")
-			currentCut = currentTree[re.sub("_[0-9]", "", andStrings[0])].array(library="ak")
+			currentCut = GetFromDict(currentTree, cutDict, andStrings[0])
 			for andCut in andStrings[1:]:
-				currentCut = currentCut and currentTree[re.sub("_[0-9]", "", andCut)].array(library="ak")
+				currentCut = currentCut and GetFromDict(currentTree, cutDict, andCut)
 		else:
-			currentCut = currentTree[re.sub("_[0-9]", "", orStrings[0])].array(library="ak")
+			currentCut = GetFromDict(currentTree, cutDict, orStrings[0])
 		for orCut in orStrings[1:]:
 			if re.search("&&", orCut):
 				andStrings = orCut.split("&&")
-				currentCut = currentTree[re.sub("_[0-9]", "", andStrings[0])].array(library="ak")
+				currentCut = GetFromDict(currentTree, cutDict, andStrings[0])
 				for andCut in andStrings[1:]:
-					currentCut = currentCut and currentTree[re.sub("_[0-9]", "", andCut)].array(library="ak")
-			currentCut = currentCut or currentTree[re.sub("_[0-9]", "", orCut)].array(library="ak")
+					currentCut = currentCut and GetFromDict(currentTree, cutDict, andCut)
+			currentCut = currentCut or GetFromDict(currentTree, cutDict, orCut)
 	elif re.search("&&", cut):
 		andStrings = cut.split("&&")
-		currentCut = currentTree[re.sub("_[0-9]", "", andStrings[0])].array(library="ak")
+		currentCut = GetFromDict(currentTree, cutDict, andStrings[0])
 		for andCut in andStrings[1:]:
-			currentCut = currentCut and currentTree[re.sub("_[0-9]", "", andCut)].array(library="ak")
+			currentCut = currentCut and GetFromDict(currentTree, cutDict, andCut)
 	else:
-		currentCut = currentTree[re.sub("_[0-9]", "", cut)].array(library="ak")
+		currentCut = GetFromDict(currentTree, cutDict, cut)
 
-	if re.search("_[1-9]", cut):
-		indexOfInterest = int(cut[-1]) - 1
-		currentCut = currentCut.mask[ak.num(currentCut) > indexOfInterest][:,indexOfInterest]
 	if (condition == "True"):
 		return currentQuantity.mask[currentCut]
 	elif (condition == "False"):
@@ -53,7 +60,7 @@ def MaskQuantity(currentTree, currentQuantity, cut, condition):
 	elif (condition[0:2] == "=="):
 		return currentQuantity.mask[currentCut == int(condition[2:])]
 	else:
-		print("Check your plotConfig.json! The cut condition is improperly defined!")
+		print("Check your plot config json! The cut condition is improperly defined!")
 		exit(-1)
 
 def ConstructHistogram(plotConfig, quantity):
