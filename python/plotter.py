@@ -61,9 +61,13 @@ if __name__ == "__main__":
 		default = cmsswBase + "/src/Plotting/Plotter/data/config/sampleConfigs.json",
 		help = "Path to the json file containing the filenames of the samples: %(default)s"
 	)
+	parser.add_argument("--n-gen-events",
+		default = cmsswBase + "/src/Plotting/Plotter/data/config/nGenEvents.json",
+		help = "Path to the json file used to create plots: %(default)s"
+	)
 	parser.add_argument("-s", "--samples",
 		nargs = "+",
-		default = ["ttv", "ttbarl", "ttbarll", "qcd", "singletop", "wjets", "zll", "vv", "data"],
+		default = ["ttbarl", "wjets", "singletop", "ttbarll", "qcd", "vv", "ttv", "zll", "data"],
 		help = "Samples. [Default: %(default)s]"
 	)
 	parser.add_argument("--year",
@@ -113,6 +117,16 @@ if __name__ == "__main__":
 		default = "nominal",
 		help = "Choose the systematic variation (nominal): %(default)s"
 	)
+	parser.add_argument("--recount",
+		default = False,
+		action = "store_true",
+		help = "Will count the number of generated events and print a dict and then exit: %(defaults)s"
+	)
+	parser.add_argument("--recount-and-plot",
+		default = False,
+		action = "store_true",
+		help = "Will count the number of generated events and print a dict and then proceed with plotting: %(defaults)s"
+	)
 
 	args = parser.parse_args()
 
@@ -140,8 +154,34 @@ if __name__ == "__main__":
 	if not args.unblind and "data" in args.samples:
 		args.samples.remove("data")
 
-	nGenEvents = 0
-	#nGenEvents = 898451086.0
+	dirLength = 0
+	nGenEvents = {}
+	if args.recount or args.recount_and_plot:
+		for sample in args.samples:
+			for directory in sampleConfigs[sample]["samplename"]:
+				dirLength += 1
+				if directory[0] == "#":
+					break
+				for root, dirs, files in os.walk(args.input_directory + directory):
+					for fileName in files:
+						xSection = common.GetXSection(fileName)
+						if xSection == 0:
+							continue
+						if str(xSection) in nGenEvents.keys():
+							nGenEvents[re.sub("_ext[0-9]*", "", directory)] += uproot.open(args.input_directory + directory + "/" + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0]
+						else:
+							nGenEvents[re.sub("_ext[0-9]*", "", directory)] = 0
+							nGenEvents[re.sub("_ext[0-9]*", "", directory)] += uproot.open(args.input_directory + directory + "/" + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0]
+		if args.recount_and_plot:
+			with open(args.n_gen_events, "w") as nGenEventsFile:
+				json.dump(nGenEvents, nGenEventsFile, indent = 8)
+		else:
+			with open(args.n_gen_events, "w") as nGenEventsFile:
+				json.dump(nGenEvents, nGenEventsFile, indent = 8)
+			exit()
+	else:
+		with open(args.n_gen_events, "r") as nGenEventsFile:
+			nGenEvents = json.load(nGenEventsFile)
 
 	# Fill Histograms
 	histPerSample = []
@@ -160,14 +200,12 @@ if __name__ == "__main__":
 				for f in files:
 					fileList.append(directory + "/" + f)
 
-		if not isData:
-			nGenEvents += sum([uproot.open(args.input_directory + fileName + ":cutflow_" + args.systematic_variation).to_numpy()[0][0] for fileName in fileList])
-
 		if args.test_run:
 			fileList = [fileList[0]]
 
 		nFiles = len(fileList)
 		for fileIndex, fileName in enumerate(fileList):
+			directory = fileName.split("/")[0]
 			xSection = common.GetXSection(fileName)
 			if xSection == 0:
 				continue
@@ -176,6 +214,8 @@ if __name__ == "__main__":
 			histPerFile = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
 			quantityIndex = 0
+			weightDict = {}
+			cutDict = {}
 			for quantity, hist, finalHist in zip(args.quantities, histPerFile, histPerQuantity):
 				common.progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity)
 				quantityIndex += 1
@@ -188,29 +228,31 @@ if __name__ == "__main__":
 				weightStrings = plotConfig[quantity]["weight"].replace(" ", "").replace("\t", "").split("*")
 				currentWeight = currentQuantity / currentQuantity
 				for weight in weightStrings:
+					weightString = re.sub("_[0-9]", "", weight)
 					if isData:
 						continue
-					tmpWeight = currentTree[re.sub("_[0-9]", "", weight)].array(library="ak")
+					if not weightString in weightDict.keys():
+						weightDict[weightString] = currentTree[weightString].array(library="ak")
 					if re.search("_[1-9]", weight):
 						indexOfInterest = int(weight[-1]) - 1
-						currentWeight = currentWeight * tmpWeight.mask[ak.num(tmpWeight) > indexOfInterest][:,indexOfInterest]
+						currentWeight = currentWeight * weightDict[weightString].mask[ak.num(weightDict[weightString]) > indexOfInterest][:,indexOfInterest]
 					else:
-						currentWeight = currentWeight * tmpWeight
+						currentWeight = currentWeight * weightDict[weightString]
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
-					currentQuantity = common.MaskQuantity(currentTree, currentQuantity, cut, condition)
+					currentQuantity = common.MaskQuantity(currentTree, currentQuantity, cutDict, cut, condition)
 
 				if isinstance(currentQuantity[0], ak.highlevel.Array):
 					if isData:
 						hist.fill(ak.flatten(currentQuantity))
 					else:
 						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-						hist = hist * xSection * 1000 * luminosity
+						hist = hist * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
 				else:
 					if isData:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
 					else:
 						hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-						hist = hist * xSection * 1000 * luminosity
+						hist = hist * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
 				finalHist += hist
 			currentTree.close()
 		histPerSample.append(histPerQuantity)
@@ -244,8 +286,8 @@ if __name__ == "__main__":
 						ax = axs[0]
 					)
 				else:
-					mcHist[figureNumber] += histPerSample[sampleNumber][figureNumber] / nGenEvents
-					hep.histplot(histPerSample[sampleNumber][figureNumber] / nGenEvents,
+					mcHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
+					hep.histplot(histPerSample[sampleNumber][figureNumber],
 						label = sampleConfigs[sample]["label"],
 						color = sampleConfigs[sample]["color"],
 						histtype = sampleConfigs[sample]["histtype"],
@@ -254,7 +296,7 @@ if __name__ == "__main__":
 					)
 
 			else:
-				hep.histplot(histPerSample[sampleNumber][figureNumber] / nGenEvents,
+				hep.histplot(histPerSample[sampleNumber][figureNumber],
 					label = sampleConfigs[sample]["label"],
 					color = sampleConfigs[sample]["color"],
 					histtype = sampleConfigs[sample]["histtype"],
@@ -267,44 +309,43 @@ if __name__ == "__main__":
 			statUnc = sqrt(ratio * (ratio / mcHist[figureNumber] + ratio / dataHist[figureNumber]))
 
 			axs[1].axhline(1.0, color = "#6c5d53")
-			axs[1].fill_between(ratio.axes[0].centers, 1 - statUnc, 1 + statUnc, alpha = 0.3, facecolor = "#6c5d53")
+			#axs[1].fill_between(ratio.axes[0].centers, 1 - statUnc, 1 + statUnc, alpha = 0.3, facecolor = "#6c5d53")
 			hep.histplot(ratio,
 				color = sampleConfigs[sample]["color"],
 				histtype = sampleConfigs[sample]["histtype"],
 				stack = False,
-				yerr = True,
+				yerr = statUnc,
 				ax = axs[1]
 			)
 
 		if args.unblind and "data" in args.samples:
 			hep.cms.label(data = True, lumi = common.GetLuminosity(str(args.year)), year = "", ax = axs[0])
-			axs[0].legend(ncol = args.number_of_cols, loc = "upper right")
+			axs[0].legend(ncol = args.number_of_cols, loc = "upper left")
 			axs[0].set_ylabel(args.y_label)
 			axs[1].set_ylabel(args.y_sub_label)
 			axs[1].set_xlabel(plotConfig[quantity]["label"])
 			axs[0].set_ylim(0, 1.25e5)
 		else:
 			hep.cms.label(lumi = common.GetLuminosity(str(args.year)), year = "")
-			plt.legend(ncol = args.number_of_cols, loc = "upper right")
+			plt.legend(ncol = args.number_of_cols, loc = "upper left")
 			plt.ylabel(args.y_label)
 			plt.xlabel(plotConfig[quantity]["label"])
 			plt.ylim(0, 1.25e5)
 
-		fig.tight_layout()
 		plt.subplots_adjust(hspace = 0.05)
-		plt.savefig(args.output_directory + "/" + quantity + ".png")
-		plt.savefig(args.output_directory + "/" + quantity + ".pdf")
+		plt.savefig(args.output_directory + "/" + quantity + ".png", bbox_inches='tight')
+		plt.savefig(args.output_directory + "/" + quantity + ".pdf", bbox_inches='tight')
 
 		if args.unblind and "data" in args.samples:
 			axs[0].set_yscale("log")
 			axs[1].set_yscale("linear")
-			axs[0].set_ylim(1e-3, 5e7)
+			axs[0].set_ylim(1e-1, 5e7)
 		else:
 			plt.yscale("log")
-			plt.ylim(1e-3, 5e7)
+			plt.ylim(1e-1, 5e7)
 
-		plt.savefig(args.output_directory + "/" + quantity + "_log.png")
-		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf")
+		plt.savefig(args.output_directory + "/" + quantity + "_log.png", bbox_inches='tight')
+		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf", bbox_inches='tight')
 
 		plt.close()
 

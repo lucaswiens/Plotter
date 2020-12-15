@@ -1,0 +1,42 @@
+[
+    {
+        "id": "5a2812c6f20ea5766a5d5661",
+        "process_name": "WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8",
+        "status": "approved",
+        "cross_section": "3.054",
+        "total_uncertainty": "0.01222",
+        "accuracy": "unknown",
+        "DAS": "/WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM",
+        "MCM": "SUS-RunIISummer16MiniAODv2-00085",
+        "equivalent_lumi": "98.98",
+        "fraction_negative_weight": "0.2251",
+        "shower": "Pythia8",
+        "energy": "13",
+        "comments": "Automatically computed",
+        "modifiedOn": "2017-12-06 21:02:59",
+        "createdOn": "2017-12-06 15:54:46",
+        "modifiedBy": "perrozzi",
+        "approvedBy": "perrozzi",
+        "createdBy": "cmsxsec"
+    },
+    {
+        "id": "5f6d7724f368571e6ae3d647",
+        "process_name": "WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2",
+        "status": "new",
+        "cross_section": "3.3",
+        "total_uncertainty": "0.01336",
+        "accuracy": "unknown",
+        "DAS": "/WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2/RunIIFall17MiniAODv2-PU2017_12Apr2018_94X_mc2017_realistic_v14-v1/MINIAODSIM",
+        "MCM": "EXO-RunIIFall17MiniAODv2-01031",
+        "equivalent_lumi": "90.56",
+        "fraction_negative_weight": "0.2267",
+        "shower": "Pythia8",
+        "matrix_generator": "none",
+        "energy": "13",
+        "comments": "Automatically computed",
+        "modifiedOn": "2020-09-25 04:50:44",
+        "createdOn": "2020-09-25 04:50:44",
+        "modifiedBy": "sdeng",
+        "createdBy": "sdeng"
+    }
+]

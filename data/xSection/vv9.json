@@ -1,0 +1,21 @@
+[
+    {
+        "id": "5b44ad00f368576cbd3d50b4",
+        "process_name": "tZq_ll_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8",
+        "status": "new",
+        "cross_section": "0.07358",
+        "total_uncertainty": "0.0001966",
+        "accuracy": "unknown",
+        "DAS": "/tZq_ll_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8/RunIIFall17MiniAODv2-PU2017_12Apr2018_94X_mc2017_realistic_v14-v1/MINIAODSIM",
+        "MCM": "TOP-RunIIFall17MiniAODv2-00022",
+        "equivalent_lumi": "896.5",
+        "fraction_negative_weight": "0.3716",
+        "shower": "Pythia8",
+        "energy": "13",
+        "comments": "Automatically computed",
+        "modifiedOn": "2018-07-10 12:56:32",
+        "createdOn": "2018-07-10 12:56:32",
+        "modifiedBy": "cmsxsec",
+        "createdBy": "cmsxsec"
+    }
+]

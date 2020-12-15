@@ -1,0 +1,22 @@
+[
+    {
+        "id": "5a2812bcf20ea5766a5d5651",
+        "process_name": "WWToLNuQQ_13TeV-powheg",
+        "status": "approved",
+        "cross_section": "43.53",
+        "total_uncertainty": "0.03475",
+        "accuracy": "NLO",
+        "DAS": "/WWToLNuQQ_13TeV-powheg/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM",
+        "MCM": "HIG-RunIISummer16MiniAODv2-00153",
+        "equivalent_lumi": "22.97",
+        "fraction_negative_weight": "0.0",
+        "shower": "none",
+        "energy": "13",
+        "comments": "Automatically computed",
+        "modifiedOn": "2017-12-06 21:02:59",
+        "createdOn": "2017-12-06 15:54:36",
+        "modifiedBy": "perrozzi",
+        "approvedBy": "perrozzi",
+        "createdBy": "cmsxsec"
+    }
+]
