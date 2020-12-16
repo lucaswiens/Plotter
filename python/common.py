@@ -50,13 +50,13 @@ def MaskQuantity(currentTree, currentQuantity, cutDict, cut, condition):
 	elif (condition == "False"):
 		return currentQuantity.mask[~currentCut]
 	elif (condition[0:2] == ">="):
-		return currentQuantity.mask[currentCut >= int(condition[2:])]
+		return currentQuantity.mask[currentCut >= float(condition[2:])]
 	elif (condition[0:2] == "<="):
-		return currentQuantity.mask[currentCut <= int(condition[2:])]
+		return currentQuantity.mask[currentCut <= float(condition[2:])]
 	elif (condition[0] == ">"):
-		return currentQuantity.mask[currentCut > int(condition[1:])]
+		return currentQuantity.mask[currentCut > float(condition[1:])]
 	elif (condition[0] == "<"):
-		return currentQuantity.mask[currentCut > int(condition[1:])]
+		return currentQuantity.mask[currentCut > float(condition[1:])]
 	elif (condition[0:2] == "!="):
 		return currentQuantity.mask[currentCut != int(condition[2:])]
 	elif (condition[0:2] == "=="):
