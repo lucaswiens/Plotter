@@ -137,8 +137,8 @@ def CreateIndexHtml(templateDir, outputDir, **kwargs):
 	for var in ["overview", "description", "subdir", "plot", "link"]:
 		with open(os.path.expandvars(templateDir + "/template_webplot_{}.html".format(var))) as htmlFile:
 			htmlTexts[var] = string.Template(htmlFile.read())
-	#with open(os.path.expandvars("templateDir/template_webplotting_{}.html".format("plot"))) as htmlFile:
-		#htmlTexts["plotjson"] = string.Template(htmlFile.read())
+	with open(os.path.expandvars(templateDir + "/template_webplotting_{}.html".format("plot"))) as htmlFile:
+		htmlTexts["plotjson"] = string.Template(htmlFile.read())
 
 	# create remote dir
 	print("Creating directory " + outputDir + "...")
@@ -155,15 +155,27 @@ def CreateIndexHtml(templateDir, outputDir, **kwargs):
 
 	htmlPlots = ""
 	for filename, extensions in sorted(plotFiles.items()):
-		htmlPlots += htmlTexts["plot"].substitute(
-				image=filename+"."+extensions[0],
-				title=filename,
-				links=" ".join([htmlTexts["link"].substitute(
-						plot=filename+"."+extension,
-						title=filename,
-						extension=extension
-				) for extension in extensions])
-		)
+		if os.path.isfile(os.path.join(outputDir, filename+".json")):
+			htmlPlots += htmlTexts["plotjson"].substitute(
+					image=filename+"."+extensions[0],
+					json=filename+".json",
+					title=filename,
+					links=" ".join([htmlTexts["link"].substitute(
+							plot=filename+"."+extension,
+							title=filename,
+							extension=extension
+					) for extension in extensions])
+			)
+		else:
+			htmlPlots += htmlTexts["plot"].substitute(
+					image=filename+"."+extensions[0],
+					title=filename,
+					links=" ".join([htmlTexts["link"].substitute(
+							plot=filename+"."+extension,
+							title=filename,
+							extension=extension
+					) for extension in extensions])
+			)
 
 	if not plotFiles == {}:
 		htmlIndexFilename = os.path.join(outputDir, "index.html")

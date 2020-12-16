@@ -184,13 +184,13 @@ if __name__ == "__main__":
 			nGenEvents = json.load(nGenEventsFile)
 
 	# Fill Histograms
-	histPerSample = []
+	histPerSample = {}
 	nSamples = len(args.samples)
 	nQuantities = len(args.quantities)
 	for sampleIndex, sample in enumerate(args.samples):
 		isData = True if sampleConfigs[sample]["isData"] == "True" else False
 
-		histPerQuantity = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
+		histPerQuantity = {quantity : bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities}
 
 		fileList = []
 		for directory in sampleConfigs[sample]["samplename"]:
@@ -211,12 +211,12 @@ if __name__ == "__main__":
 				continue
 			luminosity = common.GetLuminosity(fileName)
 
-			histPerFile = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
+			#histPerFile = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
 			quantityIndex = 0
 			weightDict = {}
 			cutDict = {}
-			for quantity, hist, finalHist in zip(args.quantities, histPerFile, histPerQuantity):
+			for quantity in args.quantities:
 				common.progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity)
 				quantityIndex += 1
 
@@ -243,19 +243,19 @@ if __name__ == "__main__":
 
 				if isinstance(currentQuantity[0], ak.highlevel.Array):
 					if isData:
-						hist.fill(ak.flatten(currentQuantity))
+						histPerQuantity[quantity].fill(ak.flatten(currentQuantity))
 					else:
-						hist.fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-						hist = hist * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
+						histPerQuantity[quantity].fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
+						histPerQuantity[quantity] = histPerQuantity[quantity] * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
 				else:
 					if isData:
-						hist.fill(currentQuantity[~ak.is_none(currentQuantity)])
+						histPerQuantity[quantity].fill(currentQuantity[~ak.is_none(currentQuantity)])
 					else:
-						hist.fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-						hist = hist * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
-				finalHist += hist
+						histPerQuantity[quantity].fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
+						histPerQuantity[quantity] = histPerQuantity[quantity] * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
+				#histPerQuantity[quantity] += hist
 			currentTree.close()
-		histPerSample.append(histPerQuantity)
+		histPerSample[sample] = histPerQuantity
 
 	# Create the plots
 	if args.unblind and "data" in args.samples:
@@ -265,6 +265,15 @@ if __name__ == "__main__":
 	plt.figure()
 	plt.style.use(hep.style.CMS)
 	plt.close()
+
+	histSumPerSample = {}
+	for quantity in args.quantities:
+		#{key: value for (key, value) in iterable}
+		histSumPerSample[quantity] = {}
+		for sampleNumber, sample in enumerate(args.samples):
+			histSumPerSample[quantity][sample] = histPerSample[sample][quantity].sum()
+			#histDictionairy = {quantity : hist.sum() for hist in histPerSample[:][quantity]}
+
 	for figureNumber, quantity in enumerate(args.quantities):
 		if args.unblind and "data" in args.samples:
 			fig, axs = plt.subplots(2,1, figsize=(10, 10), sharex = True, gridspec_kw={'height_ratios': [3, 1]})
@@ -272,12 +281,18 @@ if __name__ == "__main__":
 			fig = plt.figure(figureNumber)
 
 		plt.style.use(hep.style.CMS)
-		for sampleNumber, sample in enumerate(args.samples):
+
+		#Sort the samples by yield
+		sortedSamples = sorted(args.samples, key = lambda sample : -histSumPerSample[quantity][sample])
+		if "data" in args.samples:
+			sortedSamples.remove("data")
+			sortedSamples += ["data"]
+		for sampleNumber, sample in enumerate(sortedSamples):
 			isData = True if sampleConfigs[sample]["isData"] == "True" else False
 			if args.unblind:
 				if isData:
-					dataHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
-					hep.histplot(histPerSample[sampleNumber][figureNumber],
+					dataHist[figureNumber] += histPerSample[sample][quantity]
+					hep.histplot(histPerSample[sample][quantity],
 						label = sampleConfigs[sample]["label"],
 						color = sampleConfigs[sample]["color"],
 						histtype = sampleConfigs[sample]["histtype"],
@@ -286,8 +301,8 @@ if __name__ == "__main__":
 						ax = axs[0]
 					)
 				else:
-					mcHist[figureNumber] += histPerSample[sampleNumber][figureNumber]
-					hep.histplot(histPerSample[sampleNumber][figureNumber],
+					mcHist[figureNumber] += histPerSample[sample][quantity]
+					hep.histplot(histPerSample[sample][quantity],
 						label = sampleConfigs[sample]["label"],
 						color = sampleConfigs[sample]["color"],
 						histtype = sampleConfigs[sample]["histtype"],
@@ -296,7 +311,7 @@ if __name__ == "__main__":
 					)
 
 			else:
-				hep.histplot(histPerSample[sampleNumber][figureNumber],
+				hep.histplot(histPerSample[sample][quantity],
 					label = sampleConfigs[sample]["label"],
 					color = sampleConfigs[sample]["color"],
 					histtype = sampleConfigs[sample]["histtype"],
@@ -324,13 +339,13 @@ if __name__ == "__main__":
 			axs[0].set_ylabel(args.y_label)
 			axs[1].set_ylabel(args.y_sub_label)
 			axs[1].set_xlabel(plotConfig[quantity]["label"])
-			axs[0].set_ylim(0, 1.25e5)
+			axs[0].set_ylim(0, 2e4)
 		else:
 			hep.cms.label(lumi = common.GetLuminosity(str(args.year)), year = "")
 			plt.legend(ncol = args.number_of_cols, loc = "upper left")
 			plt.ylabel(args.y_label)
 			plt.xlabel(plotConfig[quantity]["label"])
-			plt.ylim(0, 1.25e5)
+			plt.ylim(0, 2e4)
 
 		plt.subplots_adjust(hspace = 0.05)
 		plt.savefig(args.output_directory + "/" + quantity + ".png", bbox_inches='tight')
@@ -346,8 +361,10 @@ if __name__ == "__main__":
 
 		plt.savefig(args.output_directory + "/" + quantity + "_log.png", bbox_inches='tight')
 		plt.savefig(args.output_directory + "/" + quantity + "_log.pdf", bbox_inches='tight')
-
 		plt.close()
+		plotConfig[quantity].update(histSumPerSample[quantity])
+		with open(args.output_directory + "/" + quantity + ".json", "w") as plotConfigFile:
+			json.dump(plotConfig[quantity], plotConfigFile, indent = 8)
 
 	common.CreateIndexHtml(templateDir = cmsswBase + "/src/Plotting/Plotter/data/html", outputDir = args.output_directory, fileTypes = args.file_types)
 
