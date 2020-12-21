@@ -21,9 +21,9 @@ def GetFromDict(tree, dictionairy, key):
 
 def MaskQuantity(currentTree, currentQuantity, cutDict, cut, condition):
 	cut = cut.replace(" ", "").replace("\t", "")
-	if re.search("||", cut):
+	if re.search("\|\|", cut):
 		orStrings = cut.split("||")
-		if re.search("&&", orStrings[0]):
+		if re.search("\&\&", orStrings[0]):
 			andStrings = orStrings[0].split("&&")
 			currentCut = GetFromDict(currentTree, cutDict, andStrings[0])
 			for andCut in andStrings[1:]:
@@ -31,17 +31,19 @@ def MaskQuantity(currentTree, currentQuantity, cutDict, cut, condition):
 		else:
 			currentCut = GetFromDict(currentTree, cutDict, orStrings[0])
 		for orCut in orStrings[1:]:
-			if re.search("&&", orCut):
+			if re.search("\&\&", orCut):
 				andStrings = orCut.split("&&")
 				currentCut = GetFromDict(currentTree, cutDict, andStrings[0])
 				for andCut in andStrings[1:]:
 					currentCut = currentCut and GetFromDict(currentTree, cutDict, andCut)
 			currentCut = currentCut or GetFromDict(currentTree, cutDict, orCut)
-	elif re.search("&&", cut):
+	elif re.search("\&\&", cut):
 		andStrings = cut.split("&&")
 		currentCut = GetFromDict(currentTree, cutDict, andStrings[0])
 		for andCut in andStrings[1:]:
 			currentCut = currentCut and GetFromDict(currentTree, cutDict, andCut)
+	elif re.search("abs", cut):
+		currentCut = abs(GetFromDict(currentTree, cutDict, re.sub("\)", "", re.sub("abs\(", "", cut))))
 	else:
 		currentCut = GetFromDict(currentTree, cutDict, cut)
 

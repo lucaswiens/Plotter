@@ -211,12 +211,12 @@ if __name__ == "__main__":
 				continue
 			luminosity = common.GetLuminosity(fileName)
 
-			#histPerFile = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
+			histPerFile = [bh.Histogram(common.ConstructHistogram(plotConfig, quantity)) for quantity in args.quantities]
 			currentTree = uproot.open(args.input_directory + fileName + ":nominal")
 			quantityIndex = 0
 			weightDict = {}
 			cutDict = {}
-			for quantity in args.quantities:
+			for quantity, hist in zip(args.quantities, histPerFile):
 				common.progressBar(nSamples, nFiles, nQuantities, sampleIndex, fileIndex, quantityIndex, quantity)
 				quantityIndex += 1
 
@@ -241,19 +241,18 @@ if __name__ == "__main__":
 				for cut, condition in plotConfig[quantity]["cutvariables"]:
 					currentQuantity = common.MaskQuantity(currentTree, currentQuantity, cutDict, cut, condition)
 
-				if isinstance(currentQuantity[0], ak.highlevel.Array):
-					if isData:
-						histPerQuantity[quantity].fill(ak.flatten(currentQuantity))
-					else:
-						histPerQuantity[quantity].fill(ak.flatten(currentQuantity), weight=ak.flatten(currentWeight))
-						histPerQuantity[quantity] = histPerQuantity[quantity] * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
+				# Flatten and strip all None type elements for fill to properly process
+				currentQuantity = ak.flatten(currentQuantity)
+				currentQuantity = currentQuantity[~ak.is_none(currentQuantity)]
+				currentWeight = currentWeight[~ak.is_none(currentQuantity)]
+
+				if isData:
+					hist.fill(currentQuantity)
 				else:
-					if isData:
-						histPerQuantity[quantity].fill(currentQuantity[~ak.is_none(currentQuantity)])
-					else:
-						histPerQuantity[quantity].fill(currentQuantity[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
-						histPerQuantity[quantity] = histPerQuantity[quantity] * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
-				#histPerQuantity[quantity] += hist
+					hist.fill(currentQuantity, weight=currentWeight)#[~ak.is_none(currentQuantity)], weight=currentWeight[~ak.is_none(currentQuantity)])
+					hist = hist * xSection * 1000 * luminosity / nGenEvents[re.sub("_ext[0-9]*", "", directory)]
+
+				histPerQuantity[quantity] += hist
 			currentTree.close()
 		histPerSample[sample] = histPerQuantity
 
