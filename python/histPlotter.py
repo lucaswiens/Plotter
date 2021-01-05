@@ -2,6 +2,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+
 import awkward1 as ak
 import boost_histogram as bh
 import mplhep as hep
@@ -66,6 +67,11 @@ if __name__ == "__main__":
 		default = False,
 		action = "store_true"
 	)
+	parser.add_argument("--cms-label",
+		help = "Print CMS Preliminary and Lumi information",
+		default = False,
+		action = "store_true"
+	)
 
 	args = parser.parse_args()
 
@@ -98,20 +104,23 @@ if __name__ == "__main__":
 	for figureNumber, key in enumerate(histograms.keys()):
 		if(args.verbose):
 			print(key)
-		#else:
-			#print("[" + "H" * figureNumber + "h" * numberOfHists + "]", end="\r")
+		else:
+			print("[" + "H" * figureNumber + "h" * (numberOfHists - figureNumber) + "] %i" % int(figureNumber / numberOfHists * 100) + '%', end="\r")
 
 		plt.figure(figureNumber)
-		plt.ylabel(histConfig[key]["ylabel"])
-		plt.style.use(hep.style.CMS)
-		hep.cms.label()
-		plt.xlabel(histConfig[key]["xlabel"])
 
 		if re.search("_vs_", key):
 			hep.hist2dplot(histograms[key], color = histConfig[key]["color"])
 		else:
 			hep.histplot(histograms[key], color = histConfig[key]["color"], histtype = histConfig[key]["histtype"])
 		#plt.legend(fontsize = args.font_size, ncol = args.number_of_cols)
+
+		plt.ylabel(histConfig[key]["ylabel"])
+		plt.style.use(hep.style.CMS)
+		if args.cms_label:
+			hep.cms.label()
+		plt.xlabel(histConfig[key]["xlabel"])
+
 
 		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + ".png")
 		plt.savefig(args.output_directory + "/" + histConfig[key]["subdir"] + "/" + re.sub(";1", "", key) + ".pdf")
